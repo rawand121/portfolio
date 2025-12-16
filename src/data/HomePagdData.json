@@ -1,0 +1,393 @@
+{
+  "hero": {
+    "imgUrl": "/me/img1.png",
+    "name": "Rawand Rebwar",
+    "heading": "Hey Im Rawand",
+    "typingText": [
+      "I'm a Full Stack Developer",
+      1500,
+      "I'm a Backend Engineer",
+      1500,
+      "I'm a SYSTEM DESIGNER",
+      1500
+    ],
+    "description": "I build scalable web and mobile applications with clean code and clear architecture. My work is used by over 10,000 users daily across the Middle East and Europe.",
+    "btnText": "GLET'S BUILD SOMETHING",
+    "btnUrl": "contactus"
+  },
+  "socialBtns": [
+    {
+      "icon": "fa-brands:facebook-f",
+      "iconBgClass": "facebook",
+      "href": "https://www.facebook.com/rawand.rebwar.79/"
+    },
+    {
+      "icon": "fa-brands:youtube",
+      "iconBgClass": "youtube",
+      "href": "https://www.youtube.com/@CodeLand"
+    },
+    {
+      "icon": "fa-brands:linkedin-in",
+      "iconBgClass": "linkedin",
+      "href": "https://www.linkedin.com/in/rawand121/"
+    }
+  ],
+  "brands": [
+    {
+      "src": "/images/brand-1.svg",
+      "alt": "Logolpsum"
+    },
+    {
+      "src": "/images/brand-2.svg",
+      "alt": "Logolpsum"
+    },
+    {
+      "src": "/images/brand-1.svg",
+      "alt": "Logolpsum"
+    },
+    {
+      "src": "/images/brand-2.svg",
+      "alt": "Logolpsum"
+    },
+    {
+      "src": "/images/brand-1.svg",
+      "alt": "Logolpsum"
+    },
+    {
+      "src": "/images/brand-2.svg",
+      "alt": "Logolpsum"
+    },
+    {
+      "src": "/images/brand-1.svg",
+      "alt": "Logolpsum"
+    },
+    {
+      "src": "/images/brand-2.svg",
+      "alt": "Logolpsum"
+    }
+  ],
+  "about": {
+    "imgSrc": "/me/image.png",
+    "miniTitle": "About Me",
+    "title": "I AM AVAILABLE FOR <span>FREELANCE</span> PROJECTS",
+    "description": "I'm Rawand Rebwar, a full stack developer with a Bachelor's degree in Computer Science and over 5 years of hands-on experience in software development. I've led or contributed to several successful projects deployed in Iraq, the UAE, and Europe. Whether it’s building platforms that scale or writing clean, maintainable code, I bring clarity, speed, and structure to every project I work on. I'm currently available for freelance opportunities and always open to meaningful collaborations.",
+    "funfacts": [
+      {
+        "title": "Live Projects",
+        "number": 15
+      },
+      {
+        "title": "Years Experience",
+        "number": 5
+      },
+      {
+        "title": "Daily Active users",
+        "number": "10,000"
+      }
+    ],
+    "btnText": "Get in touch",
+    "btnUrl": "contactus"
+  },
+  "projects": {
+    "sectionHeading": {
+      "miniTitle": "My Works",
+      "title": "RECENT PROJECT"
+    },
+    "allProjects": [
+      {
+        "thumbUrl": "/images/morinamenu.png",
+        "title": "Morina Menu",
+        "subTitle": "Backend, Frontend, Database Design",
+        "details": {
+          "title": "Backend Developmen for degital menu",
+          "description": "I designed and developed a robust backend system for a digital menu platform, Morina Menu. This system handles user authentication, menu management, and order processing, ensuring a seamless and efficient user experience. The backend is built with Node js and MySQL, providing a secure and scalable foundation for the application.",
+          "type": "Digital Menu",
+          "langages": "Node js, MySQL",
+          "platform": "Morina",
+          "country": "IRQ",
+          "url": "www.morinamenu.com"
+        }
+      },
+      {
+        "thumbUrl": "/images/cdo.png",
+        "title": "CDO Website",
+        "subTitle": "Backend Frontend, Dashboard, App Design",
+        "details": {
+          "title": "Developed a website for CDO",
+          "description": "I developed a website for CDO, an NGO that provides free education to children in Iraq. The website is built with React js and Tailwind css, and it is hosted on Vercel.",
+          "type": "Website",
+          "langages": "Node Js, Express, MongoDB, Next js, Tailwind css",
+          "platform": "CDO",
+          "country": "IRQ",
+          "url": "www.cdo-iraq.org"
+        }
+      },
+      {
+        "thumbUrl": "/images/kdcde.png",
+        "title": "KDCDE Website",
+        "subTitle": "Backend Frontend, Dashboard, App Design",
+        "details": {
+          "title": "Developed a website for KDCDE Organization in UK",
+          "description": "I developed a website for KDCDE Organization in UK, an organization that ",
+          "type": "Website",
+          "langages": "Node Js, Express, MongoDB, Next js, Tailwind css",
+          "platform": "CDO",
+          "country": "IRQ",
+          "url": "www.cdo-iraq.org"
+        }
+      },
+      {
+        "thumbUrl": "/images/newroz.png",
+        "title": "Newroz SC",
+        "subTitle": "Backend, Dashboard ",
+        "details": {
+          "title": "Official app to Newroz Sport Club",
+          "description": "An application to receive news, real time scores of Newroz Club, Online shop and Purchase tickets through the app.",
+          "type": "Website",
+          "langages": "Node js, Fastify, MongoDB, Next js",
+          "platform": "NewrozSC",
+          "country": "IRQ",
+          "url": "newrozsportsclub.com"
+        }
+      },
+      {
+        "thumbUrl": "/images/hybrid.png",
+        "title": "POS and Management Systems",
+        "subTitle": "Full Stack, Backend, Frontend",
+        "details": {
+          "title": "Full-Stack Management & POS Development",
+          "description": "Built end-to-end management systems and point of sale platforms currently deployed across multiple prominent establishments. These solutions help businesses automate workflows, track inventory, process transactions, and make data-driven decisions—proven at scale in demanding, high-traffic environments.",
+          "type": "Management & POS Systems",
+          "langages": "Node js, Express, MySQL, MongoDB, React js, Next Js, Tailwind css",
+          "platform": "POS & Management Systems",
+          "country": "IRQ",
+          "url": "#"
+        }
+      },
+      {
+        "thumbUrl": "/images/plus4.png",
+        "title": "Plus4 Website",
+        "subTitle": "Web Design, Frontend",
+        "details": {
+          "title": "Frontend Development for news portal based in and around Kirkuk, Iraq",
+          "description": "I developed a news website for PLUS4, a Kurdish media platform that delivers political, economic, and social news in Iraq. The website is focusing on responsiveness and user-friendly design.",
+          "type": "Website",
+          "langages": "HTML, CSS, JS, Bootstrap",
+          "platform": "PLUS4",
+          "country": "IRQ",
+          "url": "www.plus4.co"
+        }
+      },
+      {
+        "thumbUrl": "/images/ocean.png",
+        "title": "Ocean Wave Website",
+        "subTitle": "Frontend Development",
+        "details": {
+          "title": "Frontend Development for Ocean Wave",
+          "description": "I developed the frontend for Ocean Wave, a construction and logistics company based in Sulaymaniyah, Iraq. The website showcases their services in general construction, logistics, and oil & gas sectors with a professional and responsive design.",
+          "type": "Website",
+          "langages": "HTML, CSS, JS, Bootstrap",
+          "platform": "Ocean Wave",
+          "country": "IRQ",
+          "url": "www.ocean-wave.co"
+        }
+      },
+      {
+        "thumbUrl": "/images/lokmada.png",
+        "title": "Lokmada Website",
+        "subTitle": "Frontend Development",
+        "details": {
+          "title": "Frontend Development for Lokmada Restaurant",
+          "description": "I developed the frontend for Lokmada, a well-known Turkish-inspired restaurant and dessert café based in Sulaymaniyah, Iraq. The website showcases their rich menu including Lokmada desserts, kunafa, coffee, and full meals, with a responsive and user-friendly design focused on a modern dining experience.",
+          "type": "Restaurant Website",
+          "langages": "HTML, CSS, JS, Bootstrap",
+          "platform": "Lokmada",
+          "country": "IRQ",
+          "url": "www.lokmada.com"
+        }
+      }
+    ]
+  },
+  "service": {
+    "sectionHeading": {
+      "miniTitle": "SKILLS",
+      "title": "Design <span>services</span> I am providing"
+    },
+
+    "skills": {
+      "programmingSkills": [
+        { "title": "Node.js", "subTitle": "Programming" },
+        { "title": "TypeScript", "subTitle": "Programming" },
+        { "title": "JavaScript", "subTitle": "Programming" },
+        { "title": "Express.js", "subTitle": "Programming" },
+        { "title": "Fastify", "subTitle": "Programming" },
+        { "title": "REST API Design", "subTitle": "Architecture" },
+        { "title": "MVC / Clean Architecture", "subTitle": "Architecture" },
+        { "title": "Modular Backend Design", "subTitle": "Architecture" },
+        { "title": "Performance Optimization", "subTitle": "Architecture" },
+        { "title": "Next.js", "subTitle": "Programming" },
+        { "title": "React.js", "subTitle": "Programming" },
+        { "title": "Tailwind CSS", "subTitle": "Programming" },
+        { "title": "HTML", "subTitle": "Programming" },
+        { "title": "CSS", "subTitle": "Programming" }
+      ],
+
+      "databaseSkills": [
+        { "title": "MySQL", "subTitle": "Database" },
+        { "title": "PostgreSQL", "subTitle": "Database" },
+        { "title": "MongoDB", "subTitle": "Database" },
+        { "title": "Data Modeling", "subTitle": "Database Concepts" },
+        { "title": "Database Indexing", "subTitle": "Database Concepts" },
+        { "title": "Query Optimization", "subTitle": "Database Concepts" },
+        {
+          "title": "Transactions & Consistency",
+          "subTitle": "Database Concepts"
+        },
+        { "title": "Redis", "subTitle": "Database" },
+        { "title": "Caching Strategies", "subTitle": "Database Concepts" },
+        { "title": "Firebase", "subTitle": "Database" },
+        { "title": "Supabase", "subTitle": "Database" }
+      ],
+
+      "devOpsSkills": [
+        { "title": "Docker", "subTitle": "DevOps" },
+        {
+          "title": "Linux Server Administration",
+          "subTitle": "DevOps Concepts"
+        },
+        { "title": "Nginx", "subTitle": "DevOps" },
+        { "title": "PM2", "subTitle": "DevOps" },
+        { "title": "Process Management", "subTitle": "DevOps Concepts" },
+        { "title": "CI/CD Pipelines", "subTitle": "DevOps Concepts" },
+        { "title": "Git & GitHub", "subTitle": "DevOps" },
+        {
+          "title": "Scalability & Load Handling",
+          "subTitle": "DevOps Concepts"
+        },
+        { "title": "BullMQ", "subTitle": "DevOps" },
+        { "title": "Background Workers", "subTitle": "DevOps" }
+      ],
+
+      "cloudSkills": [
+        { "title": "AWS EC2", "subTitle": "Cloud" },
+        { "title": "Google Cloud Platform (GCP)", "subTitle": "Cloud" },
+        { "title": "Production Deployment", "subTitle": "Cloud Concepts" },
+        { "title": "Object Storage (S3 / GCS)", "subTitle": "Cloud Concepts" },
+        { "title": "Google Cloud Storage", "subTitle": "Cloud" },
+        { "title": "Domain & DNS Management", "subTitle": "Cloud Concepts" },
+        {
+          "title": "SSL / HTTPS (Let's Encrypt)",
+          "subTitle": "Cloud Concepts"
+        },
+        { "title": "DigitalOcean", "subTitle": "Cloud" },
+        { "title": "Contabo", "subTitle": "Cloud" },
+        { "title": "Netlify", "subTitle": "Cloud" }
+      ],
+
+      "monitoringSkills": [
+        { "title": "Grafana", "subTitle": "Monitoring" },
+        { "title": "Prometheus", "subTitle": "Monitoring" },
+        {
+          "title": "System Health Monitoring",
+          "subTitle": "Monitoring Concepts"
+        },
+        { "title": "Application Logging", "subTitle": "Monitoring Concepts" },
+        {
+          "title": "Error Tracking & Debugging",
+          "subTitle": "Monitoring Concepts"
+        },
+        { "title": "Node Exporter", "subTitle": "Monitoring" }
+      ],
+
+      "designSkills": [
+        { "title": "Figma", "subTitle": "Design" },
+        { "title": "UI/UX Collaboration", "subTitle": "Design Concepts" }
+      ]
+    }
+  },
+  "experience": {
+    "sectionHeading": {
+      "miniTitle": "Experience",
+      "title": "My Work <span>Experience</span>"
+    },
+    "allExperience": [
+      {
+        "designation": "IT Manager & Project Coordinator",
+        "company": "Civil Development Organization",
+        "duration": "JUN 2023 - PRESENT",
+        "jobType": "Full time | Part Time",
+        "companyTitle": "About The Organization",
+        "companyDescription": "Civil Development Organization “CDO” is a non-governmental, national, humanitarian, independent and non-profit organization. CDO was founded in 1999 and obtained registration from both KRG NGOs Directorate and Federal Government in Baghdad. CDO’s vision is establishing a civil society in Iraqi community through building capacity of CSO in Iraq, promoting democracy and peace promotion, developing human right situation, combating violence against women, increasing women political participation, presenting legal aid to the vulnerable groups and advocate on behalf of the local community."
+      },
+      {
+        "designation": "Full Stack Developer",
+        "company": "Morina Company",
+        "duration": "MAR 2023 - PRESENT",
+        "jobType": "Full time | Part Time",
+        "companyTitle": "About Company",
+        "companyDescription": "Morina is a marketing agency that was formed to bring new and effective marketing ideas with a vision to innovate.  We are one of the leading marketing agencies all over Iraq we work to create innovative marketing strategies and solutions for each and any market. All you ever need to do with us is to share your business’s vision thus we will create a unique strategy to achieve your vision."
+      },
+      {
+        "designation": "Full Stack Developer",
+        "company": "Dreexle Company",
+        "duration": "APR 2025 - DEC 2025",
+        "jobType": "Freelance",
+        "companyTitle": "About Company",
+        "companyDescription": "Dreexle is a software development studio based in Erbil that focuses on cutting-edge solutions in system development, website design, and mobile apps. With a small, agile team, the company emphasizes innovation, user-centric design, and reliable technology to help businesses bring their ideas to life."
+      },
+      {
+        "designation": "Front-end Developer",
+        "company": "Smarthand Company",
+        "duration": "OCT 2021 - OCT 2022",
+        "jobType": "Part time",
+        "companyTitle": "About Company",
+        "companyDescription": "SmartHand is a trusted IT solutions provider specializing in business management systems, custom software development, and server solutions. We help over 200 clients across Iraq and beyond optimize operations through innovative web and mobile applications. Our end-to-end services include development, deployment, and ongoing support to ensure seamless digital transformation. Committed to excellence, we deliver reliable, scalable technology solutions that drive business growth and efficiency."
+      },
+      {
+        "designation": "Full Stack Developer",
+        "company": "Freelance",
+        "duration": "2020 - Present",
+        "jobType": "Freelance",
+        "companyTitle": "About Company",
+        "companyDescription": "Developed both frontend interfaces and backend systems for web applications, ensuring seamless integration and optimal performance. Built responsive UIs with modern frameworks and designed robust APIs/databases. Collaborated with teams to deliver end-to-end solutions for diverse client needs."
+      }
+    ]
+  },
+  "testimonial": {
+    "sectionHeading": {
+      "miniTitle": "Testimonial",
+      "title": "Over <span>8,000+</span> <br /> PEOPLE TRUST ME"
+    },
+    "allTestimonial": [
+      {
+        "reviewText": "Donec tellus sem, tempor ac purus a, porttitor lobortis purus. Etiam quis nisl eget ex pulvinar consectetur. Suspendisse potenti. Cras non elementum risus. Fusce massa tellus, consequat a rutrum et, aliquam a lacus. Quisque viverra egestas tincidunt. Nunc nec nisi sed enim consectetur ullamcorper. Vestibulum at neque tortor. Pellentesque urna enim, ultricies at tortor eu, elementum egestas leo. In hac habitasse platea dictumst.",
+        "avatarImg": "/images/avatar-1.jpg",
+        "avatarName": "Pamela Anders",
+        "avatarCompany": "Company Name"
+      },
+      {
+        "reviewText": "Donec tellus sem, tempor ac purus a, porttitor lobortis purus. Etiam quis nisl eget ex pulvinar consectetur. Suspendisse potenti. Cras non elementum risus. Fusce massa tellus, consequat a rutrum et, aliquam a lacus. Quisque viverra egestas tincidunt. Nunc nec nisi sed enim consectetur ullamcorper. Vestibulum at neque tortor. Pellentesque urna enim, ultricies at tortor eu, elementum egestas leo. In hac habitasse platea dictumst.",
+        "avatarImg": "/images/avatar-2.jpg",
+        "avatarName": "Pamela Anders",
+        "avatarCompany": "Company Name"
+      },
+      {
+        "reviewText": "Donec tellus sem, tempor ac purus a, porttitor lobortis purus. Etiam quis nisl eget ex pulvinar consectetur. Suspendisse potenti. Cras non elementum risus. Fusce massa tellus, consequat a rutrum et, aliquam a lacus. Quisque viverra egestas tincidunt. Nunc nec nisi sed enim consectetur ullamcorper. Vestibulum at neque tortor. Pellentesque urna enim, ultricies at tortor eu, elementum egestas leo. In hac habitasse platea dictumst.",
+        "avatarImg": "/images/avatar-3.jpg",
+        "avatarName": "Pamela Anders",
+        "avatarCompany": "Company Name"
+      }
+    ]
+  },
+  "contact": {
+    "sectionHeading": {
+      "title": "Let’s Discuss Your Project",
+      "subTitle": "Always available for freelancing if the right project comes along, Feel free to contact me."
+    },
+    "contactImg": "/images/contact.jpeg",
+    "contactInfo": [
+      { "title": "Write an e-mail", "email": "contacts@rawandrebwar.dev" },
+      { "title": "Call me", "tel": "+9647725194590" }
+    ]
+  }
+}

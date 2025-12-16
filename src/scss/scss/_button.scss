@@ -1,0 +1,93 @@
+.px-btn {
+  padding: 13px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 2px solid var(--px-theme);
+  background: linear-gradient(135deg, var(--px-theme), #06b6d4);
+  background-size: 200% 200%;
+  color: var(--px-white);
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  i {
+    margin-left: 10px;
+  }
+  &:hover {
+    background: linear-gradient(135deg, #06b6d4, #2563eb);
+    color: var(--px-white);
+    border: 2px solid #06b6d4;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
+  }
+  &.dark {
+    background: var(--px-black);
+    border: 1px solid var(--px-black);
+    color: var(--px-white);
+    &:hover {
+      background: var(--px-white);
+      color: var(--px-black);
+    }
+  }
+  &.light {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--px-white);
+    &:hover {
+      background: var(--px-white);
+      color: var(--px-black);
+    }
+  }
+  &.white {
+    background: var(--px-white);
+    border: 1px solid var(--px-white);
+    color: var(--px-black);
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--px-white);
+    }
+  }
+}
+
+.social-icon {
+  a {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--px-white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin-right: 8px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    top: 0;
+    &:hover {
+      top: -4px;
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-color: var(--px-white);
+    }
+    &.dribbble {
+      background: #f26798;
+    }
+    &.facebook {
+      background: #1877f2;
+    }
+    &.linkedin {
+      background: #1275b1;
+    }
+    &.youtube {
+      background: #ff0000;
+    }
+  }
+}
