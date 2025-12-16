@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 
 function PulsingRing({ radius = 4.5, color = "#97D0B0", speed = 0.2 }) {
   const ringRef = useRef();

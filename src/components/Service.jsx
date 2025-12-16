@@ -2,7 +2,7 @@ import React from "react";
 import SectionHeading from "./SectionHeading";
 
 export default function Service({ data }) {
-  const { sectionHeading, skills } = data;
+  const { skills } = data;
   return (
     <section className="section" id="services">
       <div className="container">
