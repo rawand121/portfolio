@@ -831,7 +831,16 @@ a {
 }
 
 .home-section {
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  // On small screens, allow the section to grow naturally
+  // so content (hero text + image) isn't cramped or cut off.
+  @include down-sm {
+    min-height: auto;
+    align-items: flex-start;
+  }
 }
 
 .aboutImageContainer {

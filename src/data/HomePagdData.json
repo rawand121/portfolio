@@ -34,36 +34,20 @@
   ],
   "brands": [
     {
-      "src": "/images/brand-1.svg",
-      "alt": "Logolpsum"
+      "src": "/images/cdoo.png",
+      "alt": "CDO Organization"
     },
     {
-      "src": "/images/brand-2.svg",
-      "alt": "Logolpsum"
+      "src": "/images/morina.png",
+      "alt": "Morina Menu"
     },
     {
-      "src": "/images/brand-1.svg",
-      "alt": "Logolpsum"
+      "src": "/images/dree.png",
+      "alt": "Dreexle Company"
     },
     {
-      "src": "/images/brand-2.svg",
-      "alt": "Logolpsum"
-    },
-    {
-      "src": "/images/brand-1.svg",
-      "alt": "Logolpsum"
-    },
-    {
-      "src": "/images/brand-2.svg",
-      "alt": "Logolpsum"
-    },
-    {
-      "src": "/images/brand-1.svg",
-      "alt": "Logolpsum"
-    },
-    {
-      "src": "/images/brand-2.svg",
-      "alt": "Logolpsum"
+      "src": "/images/smart.png",
+      "alt": "Smarthand"
     }
   ],
   "about": {
