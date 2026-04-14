@@ -184,20 +184,19 @@ html {
       display: flex;
       align-items: center;
       transition: color 0.3s;
+
+      /* Explicitly force the SVG to use the theme text color */
       svg {
-        stroke: currentColor;
+        stroke: var(--text-main);
+        fill: none;
       }
+
       &:hover {
         color: var(--cyan);
+        svg {
+          stroke: var(--cyan);
+        }
       }
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text-main);
-      cursor: pointer;
     }
   }
 }
