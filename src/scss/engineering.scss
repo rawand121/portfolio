@@ -897,8 +897,38 @@ html {
       transform: translateY(0);
     }
   }
+  /* Clean, raw hamburger icon (No background) */
   .navbar .nav-actions .mobile-menu-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important; /* Completely removes the white box */
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  /* Force Hamburger Icon White in Dark Mode */
+  .portfolio-container[data-theme="dark"]
+    .navbar
+    .nav-actions
+    .mobile-menu-btn {
+    color: #ffffff;
+    svg {
+      stroke: #ffffff;
+    }
+  }
+
+  /* Force Hamburger Icon Black in Light Mode */
+  .portfolio-container[data-theme="light"]
+    .navbar
+    .nav-actions
+    .mobile-menu-btn {
+    color: #0f172a;
+    svg {
+      stroke: #0f172a;
+    }
   }
 
   /* Keep sun icon visible on phones in dark theme */
