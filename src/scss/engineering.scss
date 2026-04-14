@@ -184,6 +184,9 @@ html {
       display: flex;
       align-items: center;
       transition: color 0.3s;
+      svg {
+        stroke: currentColor;
+      }
       &:hover {
         color: var(--cyan);
       }
@@ -897,6 +900,11 @@ html {
   }
   .navbar .nav-actions .mobile-menu-btn {
     display: block;
+  }
+
+  /* Keep sun icon visible on phones in dark theme */
+  .portfolio-container[data-theme="dark"] .navbar .nav-actions .theme-toggle {
+    color: #f8fafc;
   }
 
   /* Improve moon icon visibility on phones in light theme */
