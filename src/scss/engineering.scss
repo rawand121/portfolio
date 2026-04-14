@@ -899,6 +899,11 @@ html {
     display: block;
   }
 
+  /* Improve moon icon visibility on phones in light theme */
+  .portfolio-container[data-theme="light"] .navbar .nav-actions .theme-toggle {
+    color: #1d4ed8;
+  }
+
   /* Hide text in language toggle to save space on mobile, show only active, or adjust padding */
   .navbar .nav-actions .lang-switcher-global button {
     padding: 0.3rem 0.6rem;
