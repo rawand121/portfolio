@@ -1,0 +1,41 @@
+/* Smooth Scroll Fixes */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent scroll jumps */
+* {
+  scroll-margin-top: 100px;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+/* Improve scroll performance */
+.scroll-container {
+  will-change: scroll-position;
+  transform: translateZ(0);
+}
+
+/* Fix for react-scroll smooth scrolling */
+[data-scroll-container] {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth scrolling doesn't get interrupted */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  * {
+    scroll-behavior: inherit;
+  }
+}

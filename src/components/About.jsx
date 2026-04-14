@@ -2,10 +2,11 @@ import { Icon } from "@iconify/react";
 import React from "react";
 import parser from "html-react-parser";
 import { Link as ScrollLink } from "react-scroll";
+import { useTranslation } from "react-i18next";
 
 export default function About({ data }) {
-  const { imgSrc, miniTitle, title, description, funfacts, btnText, btnUrl } =
-    data;
+  const { t } = useTranslation();
+  const { imgSrc, funfacts, btnUrl } = data;
   return (
     <section className="about-section section" id="about">
       <div className="container">
@@ -156,7 +157,7 @@ export default function About({ data }) {
                         fontWeight: "500",
                       }}
                     >
-                      Full Stack Developer
+                      {t('about.fullStackDeveloper')}
                     </div>
                     <div
                       style={{
@@ -263,36 +264,42 @@ export default function About({ data }) {
               data-aos-delay="400"
             >
               <div className="section-heading">
-                {miniTitle && (
-                  <h6>
-                    <span>{miniTitle}</span>
-                  </h6>
-                )}
+                <h6>
+                  <span>{t('about.miniTitle')}</span>
+                </h6>
 
-                {title && <h2>{parser(title)}</h2>}
+                <h2>{parser(t('about.title'))}</h2>
               </div>
-              <p>{description}</p>
+              <p>{t('about.description')}</p>
               <div className="review-box">
-                {funfacts?.map((item, index) => (
-                  <div className="r-box" key={index}>
-                    <h3>
-                      {item.number}
-                      <span>+</span>
-                    </h3>
-                    <label>{item.title}</label>
-                  </div>
-                ))}
+                {funfacts?.map((item, index) => {
+                  let translationKey = '';
+                  if (item.title === 'Live Projects') translationKey = 'about.funfacts.liveProjects';
+                  else if (item.title === 'Years Experience') translationKey = 'about.funfacts.yearsExperience';
+                  else if (item.title === 'Daily Active users') translationKey = 'about.funfacts.dailyActiveUsers';
+                  else translationKey = item.title;
+                  
+                  return (
+                    <div className="r-box" key={index}>
+                      <h3>
+                        {item.number}
+                        <span>+</span>
+                      </h3>
+                      <label>{translationKey.includes('about.funfacts') ? t(translationKey) : item.title}</label>
+                    </div>
+                  );
+                })}
               </div>
               <div className="btn-bar">
                 <ScrollLink
                   to={btnUrl}
                   spy={true}
-                  smooth={true}
-                  offset={-80}
-                  duration={300}
+                  smooth="easeInOutQuart"
+                  offset={-100}
+                  duration={800}
                   className="px-btn"
                 >
-                  <span>{btnText}</span>{" "}
+                  <span>{t('about.btnText')}</span>{" "}
                   <i>
                     <Icon icon="bi:arrow-right" />
                   </i>

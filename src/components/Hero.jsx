@@ -2,12 +2,22 @@ import { Icon } from "@iconify/react";
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Link as ScrollLink } from "react-scroll";
+import { useTranslation } from "react-i18next";
 import SocialBtns from "./SocialBtns";
 import FloatingProfileOrbit from "./FloatingProfileOrbit";
 
 export default function Hero({ data, socialData }) {
-  const { imgUrl, name, heading, typingText, description, btnText, btnUrl } =
-    data;
+  const { t } = useTranslation();
+  const { imgUrl, btnUrl } = data;
+  
+  const typingText = [
+    t('hero.typingText.fullStack'),
+    1500,
+    t('hero.typingText.backend'),
+    1500,
+    t('hero.typingText.systemDesigner'),
+    1500
+  ];
   return (
     <section className="home-section" id="home" data-scroll-index={0}>
       <div class="container h-100">
@@ -15,7 +25,7 @@ export default function Hero({ data, socialData }) {
           <div className="col-lg-6">
             <div className="hs-text-box">
               <h6 data-aos="fade-up" data-aos-duration="1200">
-                <span>{name}</span>
+                <span>{t('hero.name')}</span>
               </h6>
 
               <h1
@@ -23,7 +33,7 @@ export default function Hero({ data, socialData }) {
                 data-aos-duration="1200"
                 data-aos-delay="100"
               >
-                {heading}
+                {t('hero.heading')}
               </h1>
               <h2
                 data-aos="fade-up"
@@ -42,7 +52,7 @@ export default function Hero({ data, socialData }) {
                 data-aos-duration="1200"
                 data-aos-delay="300"
               >
-                {description}
+                {t('hero.description')}
               </p>
               <div
                 className="btn-bar d-flex align-items-sm-center flex-column flex-sm-row"
@@ -53,12 +63,12 @@ export default function Hero({ data, socialData }) {
                 <ScrollLink
                   to={btnUrl}
                   spy={true}
-                  smooth={true}
-                  offset={-80}
-                  duration={500}
+                  smooth="easeInOutQuart"
+                  offset={-100}
+                  duration={800}
                   className="px-btn"
                 >
-                  <span>{btnText}</span>{" "}
+                  <span>{t('hero.btnText')}</span>{" "}
                   <i className="d-flex">
                     <Icon icon="bi:arrow-right" />
                   </i>

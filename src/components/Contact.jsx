@@ -1,10 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SocialBtns from './SocialBtns';
 import ContactInfo from './ContactInfo';
 import ContactForm from './ContactForm';
 
 export default function Contact({ data, socialData }) {
-  const { sectionHeading, contactImg, contactInfo } = data;
+  const { t } = useTranslation();
+  const { contactImg, contactInfo } = data;
   return (
     <section id="contactus" className="section contactus-section">
       <div className="container">
@@ -18,8 +20,8 @@ export default function Contact({ data, socialData }) {
                 data-aos-duration="1200"
                 data-aos-delay="200"
               >
-                <h5>{sectionHeading.title}</h5>
-                <p className="m-0">{sectionHeading.subTitle}</p>
+                <h5>{t('contact.sectionHeading.title')}</h5>
+                <p className="m-0">{t('contact.sectionHeading.subTitle')}</p>
               </div>
             </div>
           </div>

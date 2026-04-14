@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
+  const { t } = useTranslation();
   const [mobileToggle, setMobileToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -43,75 +47,77 @@ export default function Header() {
             <ScrollLink
               to="home"
               spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
+              smooth="easeInOutQuart"
+              offset={-100}
+              duration={800}
               onClick={() => setMobileToggle(false)}
             >
-              Home
+              {t('header.home')}
             </ScrollLink>
           </li>
           <li>
             <ScrollLink
               to="about"
               spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
+              smooth="easeInOutQuart"
+              offset={-100}
+              duration={800}
               onClick={() => setMobileToggle(false)}
             >
-              About Me
+              {t('header.aboutMe')}
             </ScrollLink>
           </li>
           <li>
             <ScrollLink
               to="project"
               spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
+              smooth="easeInOutQuart"
+              offset={-100}
+              duration={800}
               onClick={() => setMobileToggle(false)}
             >
-              Projects
+              {t('header.projects')}
             </ScrollLink>
           </li>
           <li>
             <ScrollLink
               to="services"
               spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
+              smooth="easeInOutQuart"
+              offset={-100}
+              duration={800}
               onClick={() => setMobileToggle(false)}
             >
-              Services
+              {t('header.services')}
             </ScrollLink>
           </li>
           <li>
             <ScrollLink
               to="contactus"
               spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
+              smooth="easeInOutQuart"
+              offset={-100}
+              duration={800}
               onClick={() => setMobileToggle(false)}
             >
-              Contact
+              {t('header.contact')}
             </ScrollLink>
           </li>
         </ul>
         {/* Top Menu */}
-        <div className="d-flex">
+        <div className="d-flex align-items-center gap-3">
+          <ThemeToggle />
+          <LanguageSwitcher />
           <ScrollLink
             to="contactus"
             spy={true}
-            smooth={true}
-            offset={-80}
-            duration={500}
+            smooth="easeInOutQuart"
+            offset={-100}
+            duration={800}
             onClick={() => setMobileToggle(false)}
             className="px-btn d-none d-lg-inline-flex"
           >
-            Lets' Talk
+            {t('header.letsTalk')}
           </ScrollLink>
           <button
             className="toggler-menu d-lg-none"

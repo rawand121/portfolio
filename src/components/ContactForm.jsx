@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function ContactForm() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -47,10 +49,10 @@ export default function ContactForm() {
       <div className="row gx-3 gy-4">
         <div className="col-md-6">
           <div className="form-group">
-            <label className="form-label">Your Name</label>
+            <label className="form-label">{t('contact.form.yourName')}</label>
             <input
               name="name"
-              placeholder="Name *"
+              placeholder={t('contact.form.namePlaceholder')}
               className="form-control"
               type="text"
               value={formData.name}
@@ -61,10 +63,10 @@ export default function ContactForm() {
         </div>
         <div className="col-md-6">
           <div className="form-group">
-            <label className="form-label">Your Email</label>
+            <label className="form-label">{t('contact.form.yourEmail')}</label>
             <input
               name="email"
-              placeholder="Email *"
+              placeholder={t('contact.form.emailPlaceholder')}
               className="form-control"
               type="email"
               value={formData.email}
@@ -75,10 +77,10 @@ export default function ContactForm() {
         </div>
         <div className="col-12">
           <div className="form-group">
-            <label className="form-label">Subject</label>
+            <label className="form-label">{t('contact.form.subject')}</label>
             <input
               name="subject"
-              placeholder="Subject *"
+              placeholder={t('contact.form.subjectPlaceholder')}
               className="form-control"
               type="text"
               value={formData.subject}
@@ -89,10 +91,10 @@ export default function ContactForm() {
         </div>
         <div className="col-md-12">
           <div className="form-group">
-            <label className="form-label">Your message</label>
+            <label className="form-label">{t('contact.form.yourMessage')}</label>
             <textarea
               name="message"
-              placeholder="Your message *"
+              placeholder={t('contact.form.messagePlaceholder')}
               rows={4}
               className="form-control"
               value={formData.message}
@@ -107,7 +109,7 @@ export default function ContactForm() {
               className={`px-btn w-100 ${loading ? 'disabled' : ''}`}
               type="submit"
             >
-              {loading ? 'Sending...' : 'Send Message'}
+              {loading ? t('contact.form.sending') : t('contact.form.sendMessage')}
             </button>
           </div>
         </div>

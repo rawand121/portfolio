@@ -1,0 +1,186 @@
+{
+  "hero": {
+    "name": "Rawand Rebwar",
+    "heading": "Hey Im Rawand",
+    "typingText": {
+      "fullStack": "I'm a Full Stack Developer",
+      "backend": "I'm a Backend Engineer",
+      "systemDesigner": "I'm a SYSTEM DESIGNER"
+    },
+    "description": "I build scalable web and mobile applications with clean code and clear architecture. My work is used by over 10,000 users daily across the Middle East and Europe.",
+    "btnText": "GLET'S BUILD SOMETHING"
+  },
+  "about": {
+    "miniTitle": "About Me",
+    "title": "I AM AVAILABLE FOR <span>FREELANCE</span> PROJECTS",
+    "description": "I'm Rawand Rebwar, a full stack developer with a Bachelor's degree in Computer Science and over 5 years of hands-on experience in software development. I've led or contributed to several successful projects deployed in Iraq, the UAE, and Europe. Whether it's building platforms that scale or writing clean, maintainable code, I bring clarity, speed, and structure to every project I work on. I'm currently available for freelance opportunities and always open to meaningful collaborations.",
+    "funfacts": {
+      "liveProjects": "Live Projects",
+      "yearsExperience": "Years Experience",
+      "dailyActiveUsers": "Daily Active users"
+    },
+    "btnText": "Get in touch",
+    "fullStackDeveloper": "Full Stack Developer",
+    "advanced": "Advanced"
+  },
+  "projects": {
+    "sectionHeading": {
+      "miniTitle": "My Works",
+      "title": "RECENT PROJECT"
+    },
+    "details": {
+      "type": "Type:",
+      "languages": "Langages:",
+      "platform": "Platform:",
+      "country": "Country:",
+      "liveUrl": "Live URL:"
+    },
+    "items": {
+      "morinaMenu": {
+        "title": "Morina Menu",
+        "subTitle": "Backend, Frontend, Database Design",
+        "detailsTitle": "Backend Development for digital menu",
+        "detailsDescription": "I designed and developed a robust backend system for a digital menu platform, Morina Menu. This system handles user authentication, menu management, and order processing, ensuring a seamless and efficient user experience. The backend is built with Node js and MySQL, providing a secure and scalable foundation for the application.",
+        "type": "Digital Menu"
+      },
+      "cdoWebsite": {
+        "title": "CDO Website",
+        "subTitle": "Backend Frontend, Dashboard, App Design",
+        "detailsTitle": "Developed a website for CDO",
+        "detailsDescription": "I developed a website for CDO, an NGO that provides free education to children in Iraq. The website is built with React js and Tailwind css, and it is hosted on Vercel.",
+        "type": "Website"
+      },
+      "kdcdWebsite": {
+        "title": "KDCDE Website",
+        "subTitle": "Backend Frontend, Dashboard, App Design",
+        "detailsTitle": "Developed a website for KDCDE Organization in UK",
+        "detailsDescription": "I developed a website for KDCDE Organization in UK, an organization that",
+        "type": "Website"
+      },
+      "newrozSc": {
+        "title": "Newroz SC",
+        "subTitle": "Backend, Dashboard",
+        "detailsTitle": "Official app to Newroz Sport Club",
+        "detailsDescription": "An application to receive news, real time scores of Newroz Club, Online shop and Purchase tickets through the app.",
+        "type": "Website"
+      },
+      "posSystems": {
+        "title": "POS and Management Systems",
+        "subTitle": "Full Stack, Backend, Frontend",
+        "detailsTitle": "Full-Stack Management & POS Development",
+        "detailsDescription": "Built end-to-end management systems and point of sale platforms currently deployed across multiple prominent establishments. These solutions help businesses automate workflows, track inventory, process transactions, and make data-driven decisions—proven at scale in demanding, high-traffic environments.",
+        "type": "Management & POS Systems"
+      },
+      "plus4Website": {
+        "title": "Plus4 Website",
+        "subTitle": "Web Design, Frontend",
+        "detailsTitle": "Frontend Development for news portal based in and around Kirkuk, Iraq",
+        "detailsDescription": "I developed a news website for PLUS4, a Kurdish media platform that delivers political, economic, and social news in Iraq. The website is focusing on responsiveness and user-friendly design.",
+        "type": "Website"
+      },
+      "oceanWave": {
+        "title": "Ocean Wave Website",
+        "subTitle": "Frontend Development",
+        "detailsTitle": "Frontend Development for Ocean Wave",
+        "detailsDescription": "I developed the frontend for Ocean Wave, a construction and logistics company based in Sulaymaniyah, Iraq. The website showcases their services in general construction, logistics, and oil & gas sectors with a professional and responsive design.",
+        "type": "Website"
+      },
+      "lokmada": {
+        "title": "Lokmada Website",
+        "subTitle": "Frontend Development",
+        "detailsTitle": "Frontend Development for Lokmada Restaurant",
+        "detailsDescription": "I developed the frontend for Lokmada, a well-known Turkish-inspired restaurant and dessert café based in Sulaymaniyah, Iraq. The website showcases their rich menu including Lokmada desserts, kunafa, coffee, and full meals, with a responsive and user-friendly design focused on a modern dining experience.",
+        "type": "Restaurant Website"
+      }
+    }
+  },
+  "service": {
+    "sectionHeading": {
+      "miniTitle": "SKILLS",
+      "title": "Design <span>services</span> I am providing"
+    },
+    "categories": {
+      "programmingSkills": "Programming",
+      "databaseSkills": "Database",
+      "devOpsSkills": "DevOps",
+      "cloudSkills": "Cloud",
+      "monitoringSkills": "Monitoring",
+      "designSkills": "Design"
+    },
+    "subTitles": {
+      "programming": "Programming",
+      "architecture": "Architecture",
+      "database": "Database",
+      "databaseConcepts": "Database Concepts",
+      "devOps": "DevOps",
+      "devOpsConcepts": "DevOps Concepts",
+      "cloud": "Cloud",
+      "cloudConcepts": "Cloud Concepts",
+      "monitoring": "Monitoring",
+      "monitoringConcepts": "Monitoring Concepts",
+      "design": "Design",
+      "designConcepts": "Design Concepts"
+    }
+  },
+  "experience": {
+    "sectionHeading": {
+      "miniTitle": "Experience",
+      "title": "My Work <span>Experience</span>"
+    },
+    "jobTypes": {
+      "fullTime": "Full time",
+      "partTime": "Part time",
+      "freelance": "Freelance"
+    },
+    "positions": {
+      "itManagerProjectCoordinator": "IT Manager & Project Coordinator",
+      "fullStackDeveloper": "Full Stack Developer",
+      "frontEndDeveloper": "Front-end Developer"
+    },
+    "companyTitle": "About The Organization",
+    "companyTitleAlt": "About Company",
+    "companyDescriptions": {
+      "cdo": "Civil Development Organization \"CDO\" is a non-governmental, national, humanitarian, independent and non-profit organization. CDO was founded in 1999 and obtained registration from both KRG NGOs Directorate and Federal Government in Baghdad. CDO's vision is establishing a civil society in Iraqi community through building capacity of CSO in Iraq, promoting democracy and peace promotion, developing human right situation, combating violence against women, increasing women political participation, presenting legal aid to the vulnerable groups and advocate on behalf of the local community.",
+      "morina": "Morina is a marketing agency that was formed to bring new and effective marketing ideas with a vision to innovate. We are one of the leading marketing agencies all over Iraq we work to create innovative marketing strategies and solutions for each and any market. All you ever need to do with us is to share your business's vision thus we will create a unique strategy to achieve your vision.",
+      "dreexle": "Dreexle is a software development studio based in Erbil that focuses on cutting-edge solutions in system development, website design, and mobile apps. With a small, agile team, the company emphasizes innovation, user-centric design, and reliable technology to help businesses bring their ideas to life.",
+      "smarthand": "SmartHand is a trusted IT solutions provider specializing in business management systems, custom software development, and server solutions. We help over 200 clients across Iraq and beyond optimize operations through innovative web and mobile applications. Our end-to-end services include development, deployment, and ongoing support to ensure seamless digital transformation. Committed to excellence, we deliver reliable, scalable technology solutions that drive business growth and efficiency.",
+      "freelance": "Developed both frontend interfaces and backend systems for web applications, ensuring seamless integration and optimal performance. Built responsive UIs with modern frameworks and designed robust APIs/databases. Collaborated with teams to deliver end-to-end solutions for diverse client needs."
+    }
+  },
+  "contact": {
+    "sectionHeading": {
+      "title": "Let's Discuss Your Project",
+      "subTitle": "Always available for freelancing if the right project comes along, Feel free to contact me."
+    },
+    "contactInfo": {
+      "writeEmail": "Write an e-mail",
+      "callMe": "Call me"
+    },
+    "form": {
+      "yourName": "Your Name",
+      "namePlaceholder": "Name *",
+      "yourEmail": "Your Email",
+      "emailPlaceholder": "Email *",
+      "subject": "Subject",
+      "subjectPlaceholder": "Subject *",
+      "yourMessage": "Your message",
+      "messagePlaceholder": "Your message *",
+      "sendMessage": "Send Message",
+      "sending": "Sending..."
+    }
+  },
+  "header": {
+    "home": "Home",
+    "aboutMe": "About Me",
+    "projects": "Projects",
+    "services": "Services",
+    "contact": "Contact",
+    "letsTalk": "Lets' Talk"
+  },
+  "footer": {
+    "copyright": "© 2025 Rawand Rebwar. All rights reserved"
+  },
+  "common": {
+    "skills": "Skills"
+  }
+}

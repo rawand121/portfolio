@@ -1,0 +1,275 @@
+/* Light Mode Styles */
+
+.light-mode {
+  // Override header colors
+  .header-top-fixed {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    
+    &.fixed-header {
+      background: rgba(255, 255, 255, 0.98) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-menu > li a {
+      color: var(--px-text);
+      
+      &:hover {
+        color: var(--px-theme);
+      }
+    }
+  }
+
+  // Override section backgrounds
+  .gray-bg {
+    background: var(--px-bg-secondary) !important;
+  }
+
+  .theme-bg {
+    background: var(--px-theme);
+  }
+
+  // Section headings
+  .section-heading {
+    h6 {
+      color: var(--px-text);
+    }
+    h6 span {
+      color: var(--px-heading) !important; // was white, hard to see on light bg
+    }
+    h2 {
+      color: var(--px-heading);
+    }
+  }
+
+  // Hero / Home section - white text invisible on light bg
+  .home-section .hs-text-box {
+    h6 span {
+      color: var(--px-heading) !important;
+    }
+    h1 {
+      color: var(--px-heading) !important;
+    }
+    h2 {
+      color: var(--px-theme);
+    }
+    .text {
+      color: var(--px-text) !important;
+    }
+  }
+
+  // Slick dots - white border hard to see on light bg
+  .slick-dots li {
+    border-color: rgba(15, 23, 42, 0.4) !important;
+    &.slick-active {
+      background: var(--px-theme) !important;
+      border-color: var(--px-theme) !important;
+    }
+  }
+
+  // Project boxes
+  .project-box {
+    background: var(--px-white);
+    border: 2px solid rgba(20, 184, 166, 0.2);
+    
+    &:hover {
+      border-color: rgba(20, 184, 166, 0.4);
+      box-shadow: 0 20px 40px rgba(20, 184, 166, 0.15);
+    }
+
+    .project-body {
+      h5 {
+        color: var(--px-heading);
+      }
+      span {
+        color: var(--px-text);
+      }
+    }
+  }
+
+  // Experience boxes
+  .ex-box {
+    background: rgba(20, 184, 166, 0.05);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    
+    .ex-left {
+      background: linear-gradient(
+        135deg,
+        rgba(37, 99, 235, 0.08),
+        rgba(20, 184, 166, 0.12)
+      );
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      
+      h4 {
+        color: var(--px-heading);
+      }
+      
+      span, p {
+        color: var(--px-text);
+      }
+    }
+    
+    .ex-right {
+      h5 {
+        color: var(--px-heading);
+      }
+      p {
+        color: var(--px-text);
+      }
+    }
+  }
+
+  // Contact form
+  .contactus-section {
+    .contactus-title {
+      h5 {
+        color: var(--px-heading);
+      }
+      p {
+        color: var(--px-text);
+      }
+    }
+    
+    .contactus-box {
+      background: var(--px-white);
+      border: 2px solid rgba(20, 184, 166, 0.2);
+    }
+    
+    .contact-form {
+      .form-label {
+        color: var(--px-heading);
+      }
+      
+      .form-control {
+        background: rgba(15, 23, 42, 0.03);
+        border: 2px solid rgba(15, 23, 42, 0.1);
+        color: var(--px-heading);
+        
+        &:focus {
+          background: rgba(15, 23, 42, 0.05);
+          border-color: var(--px-theme);
+        }
+        
+        &::placeholder {
+          color: rgba(15, 23, 42, 0.4);
+        }
+      }
+    }
+    
+    .contact-info {
+      .contact-info-in {
+        label {
+          color: var(--px-text);
+        }
+        a {
+          color: var(--px-heading);
+        }
+      }
+    }
+  }
+
+  // About section
+  .about-section {
+    .about-text {
+      p {
+        color: var(--px-text);
+      }
+    }
+    
+    .review-box {
+      .r-box {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        color: var(--px-heading);
+        
+        h3 {
+          color: var(--px-heading);
+        }
+      }
+    }
+  }
+
+  // Skills boxes
+  .skillsBox {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(20, 184, 166, 0.2);
+    
+    &:hover {
+      background: linear-gradient(135deg, #2563eb, #14b8a6);
+      border-color: var(--px-theme);
+      
+      h1, p {
+        color: var(--px-white);
+      }
+    }
+    
+    h1 {
+      color: var(--px-heading);
+    }
+    
+    p {
+      color: var(--px-text);
+    }
+  }
+
+  // Service boxes - overlay stays dark, keep light text
+  .services-box {
+    .services-body {
+      p {
+        color: var(--px-white);
+        opacity: 0.9;
+      }
+    }
+  }
+
+  // Testimonial
+  .testimonial-box {
+    .t-text {
+      color: var(--px-text);
+    }
+    
+    .t-person {
+      h6 {
+        color: var(--px-heading);
+      }
+      span {
+        color: var(--px-text);
+      }
+    }
+  }
+
+  // Footer
+  .footer {
+    background: var(--px-bg-secondary);
+    color: var(--px-text);
+    border-top: 1px solid rgba(20, 184, 166, 0.2);
+  }
+
+  // Modal
+  .px-modal {
+    background-color: var(--px-white);
+  }
+
+  .mfp-close {
+    background: rgba(15, 23, 42, 0.1);
+    color: var(--px-heading);
+    
+    &:hover {
+      background: rgba(15, 23, 42, 0.2);
+    }
+  }
+
+  // Theme toggle icon color
+  .theme-toggle {
+    color: var(--px-heading) !important;
+  }
+
+  // Brand section - gray bg so white logos are visible
+  .brand-section {
+    background: #e2e8f0 !important;
+  }
+}
+
+// Default dark mode theme toggle color
+.theme-toggle {
+  color: var(--px-white);
+}

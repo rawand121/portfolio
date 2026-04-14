@@ -2,8 +2,35 @@
   --bs-heading-color: var(--px-heading);
   --px-theme: #{$px-theme};
   --px-theme-rgb: #{$px-theme-rgb};
+  --px-secondary: #{$px-secondary};
+  --px-accent: #{$px-accent};
   --px-black: #{$px-black};
   --px-white: #{$px-white};
   --px-text: #{$px-text};
   --px-heading: #{$px-heading};
+  --px-bg: #{$px-black};
+  --px-bg-secondary: #1e293b;
+  --px-bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+// Light mode variables
+:root.light-mode {
+  --px-bg: #ffffff;
+  --px-bg-secondary: #f8fafc;
+  --px-text: #475569;
+  --px-heading: #0f172a;
+  --px-black: #0f172a;
+  --px-white: #ffffff;
+  --px-bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+}
+
+// Dark mode variables (default)
+:root.dark-mode {
+  --px-bg: #{$px-black};
+  --px-bg-secondary: #1e293b;
+  --px-text: #{$px-text};
+  --px-heading: #{$px-heading};
+  --px-black: #{$px-black};
+  --px-white: #{$px-white};
+  --px-bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
 }

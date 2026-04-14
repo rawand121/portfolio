@@ -1,10 +1,11 @@
 import React from 'react';
 import parser from 'html-react-parser';
+import { useTranslation } from 'react-i18next';
 
 export default function Modal({ modalData }) {
+  const { t } = useTranslation();
   const { thumbUrl, details } = modalData;
-  const { title, description, type, langages, platform, country, url } =
-    details;
+  const { title, description, type, langages, platform, country, url } = details;
   return (
     <div className="px-modal">
       <div className="single-project-box">
@@ -19,32 +20,32 @@ export default function Modal({ modalData }) {
               <ul>
                 {type && (
                   <li className="d-flex">
-                    <span className="col-4 col-lg-3">Type:</span>
+                    <span className="col-4 col-lg-3">{t('projects.details.type')}</span>
                     <span>{type}</span>
                   </li>
                 )}
                 {langages && (
                   <li className="d-flex">
-                    <span className="col-4 col-lg-3">Langages:</span>
-                    <span>{langages}</span>
+                    <span className="col-4 col-lg-3">{t('projects.details.languages')}</span>
+                    <span style={{ direction: 'ltr', textAlign: 'left' }}>{langages}</span>
                   </li>
                 )}
                 {platform && (
                   <li className="d-flex">
-                    <span className="col-4 col-lg-3">Platform:</span>
-                    <span>{platform}</span>
+                    <span className="col-4 col-lg-3">{t('projects.details.platform')}</span>
+                    <span style={{ direction: 'ltr', textAlign: 'left' }}>{platform}</span>
                   </li>
                 )}
                 {country && (
                   <li className="d-flex">
-                    <span className="col-4 col-lg-3">Country:</span>
-                    <span>{country}</span>
+                    <span className="col-4 col-lg-3">{t('projects.details.country')}</span>
+                    <span style={{ direction: 'ltr', textAlign: 'left' }}>{country}</span>
                   </li>
                 )}
                 {url && (
                   <li className="d-flex">
-                    <span className="col-4 col-lg-3">Live URL:</span>
-                    <span>{url}</span>
+                    <span className="col-4 col-lg-3">{t('projects.details.liveUrl')}</span>
+                    <span style={{ direction: 'ltr', textAlign: 'left' }}>{url}</span>
                   </li>
                 )}
               </ul>

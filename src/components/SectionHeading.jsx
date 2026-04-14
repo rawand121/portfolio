@@ -1,13 +1,5 @@
 import React from "react";
-
-const skillsObj = {
-  monitoringSkills: "Monitoring",
-  devOpsSkills: "DevOps",
-  designSkills: "Design",
-  programmingSkills: "Programming",
-  databaseSkills: "Database",
-  cloudSkills: "Cloud",
-};
+import parser from "html-react-parser";
 
 export default function SectionHeading({ miniTitle, title, variant }) {
   return (
@@ -19,7 +11,7 @@ export default function SectionHeading({ miniTitle, title, variant }) {
       >
         <span>{miniTitle}</span>
       </h6>
-      <h2 className="mb-0">{skillsObj[title]}</h2>
+      {title && <h2 className="mb-0">{typeof title === 'string' && title.includes('<span>') ? parser(title) : title}</h2>}
     </div>
   );
 }
