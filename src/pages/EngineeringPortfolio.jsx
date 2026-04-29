@@ -167,6 +167,18 @@ const getProjects = (lang) => [
     }[lang],
   },
   {
+    thumbUrl: "/images/kdcde.png",
+    url: "https://www.kdcde.org",
+    type: { en: "NGO Website", ku: "وێبسایتی ڕێکخراو", ar: "موقع منظمة" }[lang],
+    langages: "Node.js, MongoDB, Next.js",
+    title: "KDCDE Website",
+    description: {
+      en: "Platform for the KDCDE Organization based in the UK, focusing on community outreach.",
+      ku: "پلاتفۆرمێک بۆ ڕێکخراوی KDCDE لە بەریتانیا، بە ئامانجی خزمەتکردنی کۆمەڵگا.",
+      ar: "منصة لمنظمة KDCDE ومقرها في المملكة المتحدة، تركز على التواصل المجتمعي.",
+    }[lang],
+  },
+  {
     thumbUrl: "/images/cdo.png",
     url: "https://www.cdo-iraq.org",
     type: { en: "Website", ku: "وێبسایت", ar: "موقع إلكتروني" }[lang],
@@ -219,6 +231,21 @@ const getProjects = (lang) => [
     }[lang],
   },
   {
+    thumbUrl: "/images/nexusapp.png",
+    url: "#",
+    type: { en: "Nexus App", ku: "ئەپلیکەیشنی نێکسۆس", ar: "تطبيق نيكسوس" }[
+      lang
+    ],
+    langages: "Node.js, Express, MongoDB",
+    title: "  Nexus App",
+    description: {
+      en: "Application to get discount in other restaurants and cafes, and get points to redeem for free items. also there is a ranking system to reward the users with points.",
+      ku: "ئەپلیکەیشنێک بۆ بەدەستهێنانی داشکاندن لە چێشتخانە و کافێی جیاوازدا، لەگەڵ کۆکردنەوەی خاڵ بۆ گۆڕینەوەیان بە دیاری و بڕگەی خۆڕایی. هەروەها سیستمێکی ڕیزبەندی (Ranking) تێدایە بۆ خەڵاتکردنی بەکارهێنەران بە خاڵی زیاتر.",
+      ar: "تطبيق للحصول على خصم في مطاعم و كافيهات أخرى، والحصول على نقاط لتبديلها لعناصر مجانية. كما هناك نظام ترتيب لتكريم المستخدمين 'تطبيق للحصول على خصومات في مختلف المطاعم والمقاهي، وجمع النقاط لاستبدالها بوجبات أو عناصر مجانية. كما يوجد نظام تصنيف (Ranking) لمكافأة المستخدمين بنقاط إضافية",
+    }[lang],
+  },
+
+  {
     thumbUrl: "/images/ocean.png",
     url: "https://www.ocean-wave.co",
     type: { en: "Corporate Website", ku: "وێبسایتی کۆمپانیا", ar: "موقع شركة" }[
@@ -246,18 +273,6 @@ const getProjects = (lang) => [
       en: "A rich menu display including desserts and full meals, focused on a modern dining experience.",
       ku: "وێبسایتێک بۆ نیشاندانی مینیوی دەوڵەمەندی چێشتخانە کە شیرینی و ژەمە سەرەکییەکان لەخۆدەگرێت.",
       ar: "عرض قائمة غنية تشمل الحلويات والوجبات الكاملة، مع التركيز على تجربة تناول طعام حديثة.",
-    }[lang],
-  },
-  {
-    thumbUrl: "/images/kdcde.png",
-    url: "#",
-    type: { en: "NGO Website", ku: "وێبسایتی ڕێکخراو", ar: "موقع منظمة" }[lang],
-    langages: "Node.js, MongoDB, Next.js",
-    title: "KDCDE Website",
-    description: {
-      en: "Platform for the KDCDE Organization based in the UK, focusing on community outreach.",
-      ku: "پلاتفۆرمێک بۆ ڕێکخراوی KDCDE لە بەریتانیا، بە ئامانجی خزمەتکردنی کۆمەڵگا.",
-      ar: "منصة لمنظمة KDCDE ومقرها في المملكة المتحدة، تركز على التواصل المجتمعي.",
     }[lang],
   },
 ];
@@ -448,7 +463,7 @@ const App = () => {
             >
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            <button className="btn-primary desktop-only">
+            <button className="btn-primary desktop-only getInTouch">
               {t.nav.getInTouch}
             </button>
             <button

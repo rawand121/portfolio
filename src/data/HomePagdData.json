@@ -89,7 +89,7 @@
           "langages": "Node js, MySQL",
           "platform": "Morina",
           "country": "IRQ",
-          "url": "www.morinamenu.com"
+          "url": "morinamenu.com"
         }
       },
       {
@@ -182,7 +182,21 @@
         "subTitle": "Frontend Development",
         "details": {
           "title": "Frontend Development for Lokmada Restaurant",
-          "description": "I developed the frontend for Lokmada, a well-known Turkish-inspired restaurant and dessert café based in Sulaymaniyah, Iraq. The website showcases their rich menu including Lokmada desserts, kunafa, coffee, and full meals, with a responsive and user-friendly design focused on a modern dining experience.",
+          "description": "I developed the frontend for Lokmada, a well-known dessert café based in Sulaymaniyah, Iraq. The website showcases their rich menu including Lokmada desserts, kunafa, coffee, and much more, with a responsive and user-friendly design focused on a modern dining experience.",
+          "type": "Restaurant Website",
+          "langages": "HTML, CSS, JS, Bootstrap",
+          "platform": "Lokmada",
+          "country": "IRQ",
+          "url": "www.lokmada.com"
+        }
+      },
+      {
+        "thumbUrl": "/images/nexusapp.png",
+        "title": "Nexus App",
+        "subTitle": "Backend Development",
+        "details": {
+          "title": "Backend Development for Nexus App",
+          "description": "I developed the backend for Nexus App, a well-known Turkish-inspired restaurant and dessert café based in Sulaymaniyah, Iraq. The website showcases their rich menu including Lokmada desserts, kunafa, coffee, and full meals, with a responsive and user-friendly design focused on a modern dining experience.",
           "type": "Restaurant Website",
           "langages": "HTML, CSS, JS, Bootstrap",
           "platform": "Lokmada",
