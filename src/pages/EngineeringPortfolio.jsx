@@ -74,8 +74,8 @@ const translations = {
       getInTouch: "پەیوەندیم پێوە بکە",
     },
     hero: {
-      intro: "من",
-      name: "ڕەوەند ڕێبوارم",
+      intro: "",
+      name: "ڕەوەند ڕێبوار",
       title: "، ئەندازیاری پرۆگرامساز.",
       bio: "من ئەندازیاری پڕۆگرامسازیم بە زیاتر لە ٥ ساڵ ئەزموون لە دروستکردنی و ئەپلیکەیشنی گەورە و خێرا و پارێزراو کە لە عێراق، ئیمارات و ئەوروپا بەکاردەهێنرێن. هەمووکات بیردەکەمەوە لە گۆڕینی کێشە ئاڵۆزەکان بۆ چارەسەری سادە و جێی متمانە. لە ئێستادا ئامادەم بۆ پڕۆژەی فریلانس و کاری هاوبەش.",
       liveProjects: "پڕۆژەی کار",
@@ -209,7 +209,7 @@ const getProjects = (lang) => [
   {
     thumbUrl: "/images/newroz.png",
     url: "https://newrozsportsclub.com",
-    type: { en: "Web App", ku: "وێب ئەپ", ar: "تطبيق ويب" }[lang],
+    type: { en: "Web App", ku: "مۆبایل ئەپ", ar: "تطبيق ويب" }[lang],
     langages: "Node.js, Fastify, Next.js",
     title: "Newroz SC",
     description: {
@@ -244,7 +244,6 @@ const getProjects = (lang) => [
       ar: "تطبيق للحصول على خصم في مطاعم و كافيهات أخرى، والحصول على نقاط لتبديلها لعناصر مجانية. كما هناك نظام ترتيب لتكريم المستخدمين 'تطبيق للحصول على خصومات في مختلف المطاعم والمقاهي، وجمع النقاط لاستبدالها بوجبات أو عناصر مجانية. كما يوجد نظام تصنيف (Ranking) لمكافأة المستخدمين بنقاط إضافية",
     }[lang],
   },
-
   {
     thumbUrl: "/images/ocean.png",
     url: "https://www.ocean-wave.co",
@@ -350,8 +349,8 @@ const skillsData = [
 ];
 
 const App = () => {
-  const [theme, setTheme] = useState("dark");
-  const [lang, setLang] = useState("en"); // Translation state
+  const [theme, setTheme] = useState("light");
+  const [lang, setLang] = useState("ku"); // Translation state
   const t = translations[lang]; // Active dictionary
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
