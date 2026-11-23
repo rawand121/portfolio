@@ -19,6 +19,7 @@ export default function Projects({ data }) {
   // Map project titles to translation keys
   const projectKeyMap = {
     "Morina Menu": "morinaMenu",
+    "Morina App": "morinaApp",
     "CDO Website": "cdoWebsite",
     "KDCDE Website": "kdcdWebsite",
     "Newroz SC": "newrozSc",

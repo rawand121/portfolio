@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, Suspense, lazy } from "react";
 import "../scss/engineering.scss";
 import {
   Globe,
@@ -16,10 +16,10 @@ import {
   Sun,
   Moon,
   ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import { BsFacebook, BsLinkedin, BsYoutube } from "react-icons/bs";
+
+const ScrollScene = lazy(() => import("../components/ScrollScene"));
 
 // --- FULL SITE TRANSLATIONS ---
 const translations = {
@@ -179,15 +179,15 @@ const getProjects = (lang) => [
     }[lang],
   },
   {
-    thumbUrl: "/images/cdo.png",
-    url: "https://www.cdo-iraq.org",
-    type: { en: "Website", ku: "وێبسایت", ar: "موقع إلكتروني" }[lang],
-    langages: "Node.js, MongoDB, Next.js, Tailwind",
-    title: "CDO Website",
+    thumbUrl: "/images/morinaapp.png",
+    url: "https://morina.app",
+    type: { en: "Web App & Ticketing", ku: "وێب ئەپ و بلیت", ar: "تطبيق ويب وتذاكر" }[lang],
+    langages: "React.js, Node.js, Express, Tailwind",
+    title: "Morina App",
     description: {
-      en: "Developed a platform for an NGO providing free education to children in Iraq, hosted on Vercel.",
-      ku: "پەرەپێدانی پلاتفۆرمێک بۆ ڕێکخراوێکی ناحکومی کە پەروەردەی بێبەرامبەر پێشکەش بە منداڵان دەکات لە عێراق.",
-      ar: "تطوير منصة لمنظمة غير حكومية تقدم تعليماً مجانياً للأطفال في العراق، مستضافة على Vercel.",
+      en: "An event management and ticketing platform for concerts, exhibitions, and bazaars with real-time seat and ticket booking.",
+      ku: "پلاتفۆرمی بەڕێوەبردنی بۆنە و بڕینی بلیت بۆ کۆنسێرت، پێشانگا و بازاڕەکان لەگەڵ سیستەمی بڕینی بلیتی ڕاستەوخۆ.",
+      ar: "منصة لإدارة الفعاليات وحجز التذاكر للحفلات الموسيقية والمعارض والبازارات مع نظام حجز التذاكر المباشر.",
     }[lang],
   },
   {
@@ -348,436 +348,504 @@ const skillsData = [
   },
 ];
 
-const App = () => {
-  const [theme, setTheme] = useState("light");
-  const [lang, setLang] = useState("ku"); // Translation state
-  const t = translations[lang]; // Active dictionary
+const extra = {
+  en: {
+    avail: "Available for freelance projects",
+    cta1: "View projects",
+    scroll: "Scroll",
+    home: "Home",
+  },
+  ku: {
+    avail: "ئامادەم بۆ پڕۆژەی فریلانس",
+    cta1: "پڕۆژەکان ببینە",
+    scroll: "سکرۆڵ بکە",
+    home: "سەرەکی",
+  },
+  ar: {
+    avail: "متاح للمشاريع المستقلة",
+    cta1: "عرض المشاريع",
+    scroll: "مرر للأسفل",
+    home: "الرئيسية",
+  },
+};
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
-
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200,
-  );
-  const [currentPage, setCurrentPage] = useState(0);
-  const projectsPerPage = 6;
-  const activeProjects = getProjects(lang);
-  const totalPages = Math.ceil(activeProjects.length / projectsPerPage);
-
+/* Fade / rise on scroll */
+const Reveal = ({ children, className = "", delay = 0, as: Tag = "div" }) => {
+  const ref = useRef(null);
+  const [seen, setSeen] = useState(false);
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const el = ref.current;
+    if (!el) return undefined;
+    if (!("IntersectionObserver" in window)) {
+      setSeen(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSeen(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
+  return (
+    <Tag
+      ref={ref}
+      className={`rx-reveal ${seen ? "is-in" : ""} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </Tag>
+  );
+};
 
-  const isMobile = windowWidth <= 768;
-  const displayedProjects = isMobile
-    ? activeProjects
-    : activeProjects.slice(
-        currentPage * projectsPerPage,
-        (currentPage + 1) * projectsPerPage,
-      );
+/* Project card with 3D tilt on pointer devices */
+const TiltCard = ({ project, visitLabel, delay }) => {
+  const ref = useRef(null);
+  const canHover = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+  const onMove = (e) => {
+    const el = ref.current;
+    if (!el || !canHover()) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    el.style.setProperty("--rx", `${(0.5 - py) * 9}deg`);
+    el.style.setProperty("--ry", `${(px - 0.5) * 11}deg`);
+    el.style.setProperty("--mx", `${px * 100}%`);
+    el.style.setProperty("--my", `${py * 100}%`);
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.setProperty("--rx", "0deg");
+    el.style.setProperty("--ry", "0deg");
+  };
+
+  const isLive = project.url && project.url !== "#";
+
+  return (
+    <Reveal delay={delay} className="rx-card-slot">
+      <article
+        className="rx-card"
+        ref={ref}
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+      >
+        <div className="rx-card-media">
+          <img
+            src={project.thumbUrl}
+            alt={project.title}
+            loading="lazy"
+            decoding="async"
+          />
+          <span className="rx-card-kind">{project.type}</span>
+        </div>
+        <div className="rx-card-body">
+          <h3 className="rx-card-title" dir="ltr">
+            {project.title.trim()}
+          </h3>
+          <p className="rx-card-desc">{project.description}</p>
+          <div className="rx-tags" dir="ltr">
+            {project.langages.split(",").map((tech, i) => (
+              <span className="rx-tag" key={i}>
+                {tech.trim()}
+              </span>
+            ))}
+          </div>
+          {isLive && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rx-card-link"
+            >
+              {visitLabel}
+              <ArrowUpRight size={18} className="rx-flip" />
+            </a>
+          )}
+        </div>
+        <span className="rx-card-shine" />
+      </article>
+    </Reveal>
+  );
+};
+
+const App = () => {
+  const [theme, setTheme] = useState("dark");
+  const [lang, setLang] = useState("ku");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const rootRef = useRef(null);
+  const barRef = useRef(null);
+
+  const t = translations[lang];
+  const x = extra[lang];
+  const isRTL = lang === "ku" || lang === "ar";
+  const projects = getProjects(lang);
+
+  /* Page background follows theme */
   useEffect(() => {
-    document.body.style.backgroundColor =
-      theme === "dark" ? "#0B1120" : "#F8FAFC";
+    document.body.style.background = theme === "dark" ? "#07080c" : "#f6f2ea";
     document.body.style.margin = "0";
+    document.documentElement.style.background =
+      theme === "dark" ? "#07080c" : "#f6f2ea";
   }, [theme]);
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
-  const handleNextPage = () => {
-    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
-  };
-  const handlePrevPage = () => {
-    if (currentPage > 0) setCurrentPage(currentPage - 1);
-  };
+  /* Lock page scroll while mobile menu is open */
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
-  // Set direction based on language
-  const isRTL = lang === "ku" || lang === "ar";
+  /* Scroll driven CSS variables + progress bar */
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const max = Math.max(
+        1,
+        document.documentElement.scrollHeight - window.innerHeight,
+      );
+      if (barRef.current)
+        barRef.current.style.transform = `scaleX(${Math.min(1, y / max)})`;
+      if (rootRef.current) rootRef.current.style.setProperty("--y", y);
+      setScrolled(y > 24);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  const navItems = [
+    ["about", t.nav.about],
+    ["projects", t.nav.projects],
+    ["skills", t.nav.skills],
+    ["contact", t.nav.contact],
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const subject = encodeURIComponent(`Portfolio message from ${f.get("name")}`);
+    const body = encodeURIComponent(
+      `${f.get("message")}\n\n— ${f.get("name")} (${f.get("email")})`,
+    );
+    window.location.href = `mailto:contact@rawandrebwar.dev?subject=${subject}&body=${body}`;
+  };
 
   return (
     <div
-      className="portfolio-container"
+      className="portfolio-container rx-root"
       data-theme={theme}
       data-lang={lang}
       dir={isRTL ? "rtl" : "ltr"}
+      ref={rootRef}
     >
-      <div className="content-wrapper">
-        {/* HEADER NAVIGATION */}
-        <nav className="navbar">
-          <div className="logo-placeholder">
-            <img src="/logo21.png" alt="Logo" className="nav-logo" />
-          </div>
+      <Suspense fallback={null}>
+        <ScrollScene theme={theme} rtl={isRTL} />
+      </Suspense>
 
-          <ul className={`nav-links ${isMenuOpen ? "mobile-active" : ""}`}>
-            <li>
-              <a href="#about" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.about}
+      <div className="rx-progress">
+        <span ref={barRef} />
+      </div>
+
+      {/* NAV */}
+      <header className={`rx-nav ${scrolled ? "is-scrolled" : ""}`}>
+        <div className="rx-nav-bar">
+          <a href="#about" className="rx-brand" aria-label="Rawand Rebwar">
+            <img src="/logo21.png" alt="Logo" />
+          </a>
+
+          <nav className="rx-links" aria-label="Main">
+            {navItems.map(([id, label]) => (
+              <a key={id} href={`#${id}`}>
+                {label}
               </a>
-            </li>
-            <li>
-              <a href="#projects" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.projects}
-              </a>
-            </li>
-            <li>
-              <a href="#skills" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.skills}
-              </a>
-            </li>
-            <li>
-              <a href="#contact" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.contact}
-              </a>
-            </li>
-          </ul>
-
-          <div className="nav-actions">
-            {/* Global Language Switcher */}
-            <div className="lang-switcher-global">
-              <button
-                className={lang === "en" ? "active" : ""}
-                onClick={() => setLang("en")}
-              >
-                EN
-              </button>
-              <button
-                className={lang === "ku" ? "active" : ""}
-                onClick={() => setLang("ku")}
-              >
-                KU
-              </button>
-              <button
-                className={lang === "ar" ? "active" : ""}
-                onClick={() => setLang("ar")}
-              >
-                AR
-              </button>
-            </div>
-
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Toggle Theme"
-            >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <button className="btn-primary desktop-only getInTouch">
-              {t.nav.getInTouch}
-            </button>
-            <button
-              className="mobile-menu-btn"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </nav>
-
-        {/* HERO SECTION */}
-        <header className="hero-section" id="about">
-          <div className="avatar-complex">
-            <div className="glow-ring">
-              <div className="inner-circle">
-                <img
-                  src="/me/img1-removebg-preview.png"
-                  alt="Rawand Rebwar"
-                  className="portrait"
-                />
-                {/* <div className="overlay-logo">
-                  <img src="/logo21.png" alt="R Logo" />
-                </div> */}
-              </div>
-            </div>
-          </div>
-
-          <h1 className="hero-title">
-            {t.hero.intro} <span className="highlight">{t.hero.name}</span>
-            {t.hero.title}
-          </h1>
-
-          <p className="hero-bio">{t.hero.bio}</p>
-
-          <div className="metrics-container">
-            <div className="metric-badge">
-              <Globe className="icon" />
-              <div className="text">
-                <span className="number">15+</span>
-                <span className="label">{t.hero.liveProjects}</span>
-              </div>
-            </div>
-            <div className="metric-badge">
-              <Code className="icon green" />
-              <div className="text">
-                <span className="number green">5+</span>
-                <span className="label">{t.hero.yearsExp}</span>
-              </div>
-            </div>
-            <div className="metric-badge">
-              <Users className="icon" />
-              <div className="text">
-                <span className="number">10,000+</span>
-                <span className="label">{t.hero.activeUsers}</span>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* PROJECTS SHOWCASE */}
-        <section className="projects-section" id="projects">
-          <div className="section-header-modern">
-            <h2 className="section-title">{t.projectsSec.title}</h2>
-            <p className="section-subtitle">{t.projectsSec.subtitle}</p>
-          </div>
-
-          <div className="mobile-swipe-hint">
-            <span>{t.projectsSec.swipe}</span>
-            <div className="swipe-line"></div>
-          </div>
-
-          <div className="modern-projects-grid">
-            {displayedProjects.map((project, index) => (
-              <div
-                className="modern-project-card"
-                key={`${isMobile ? "m" : "d"}-${currentPage}-${index}`}
-              >
-                <div className="card-image-wrapper">
-                  <img
-                    src={project.thumbUrl}
-                    alt={project.title}
-                    className="project-thumbnail"
-                  />
-                  <div className="image-overlay">
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="live-btn"
-                    >
-                      {t.projectsSec.visitSite}{" "}
-                      <ArrowUpRight size={18} className="rtl-flip-icon" />
-                    </a>
-                  </div>
-                </div>
-
-                <div className="card-info">
-                  <div className="info-header">
-                    <span className="project-type">{project.type}</span>
-                  </div>
-                  {/* Keep Project Names English as branding */}
-                  <h3 className="en-forced">{project.title}</h3>
-                  <p className="description">{project.description}</p>
-
-                  <div className="tech-tags">
-                    {project.langages.split(",").map((tech, i) => (
-                      <span className="tech-tag en-forced" key={i}>
-                        {tech.trim()}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
             ))}
-          </div>
+          </nav>
 
-          {!isMobile && totalPages > 1 && (
-            <div className="pagination-wrapper">
-              <button
-                className="page-btn rtl-flip-btn"
-                onClick={handlePrevPage}
-                disabled={currentPage === 0}
-              >
-                <ChevronLeft size={24} />
-              </button>
-
-              <div className="page-dots">
-                {Array.from({ length: totalPages }).map((_, idx) => (
-                  <span
-                    key={idx}
-                    className={`dot ${currentPage === idx ? "active" : ""}`}
-                    onClick={() => setCurrentPage(idx)}
-                  ></span>
-                ))}
-              </div>
-
-              <button
-                className="page-btn rtl-flip-btn"
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages - 1}
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-          )}
-        </section>
-
-        {/* SKILLS SECTION (English only as requested, except Title) */}
-        <section id="skills">
-          <div className="desktop-skills-wrapper">
-            <h2 className="section-title">{t.skillsSec.title}</h2>
-            <div className="tabbed-skills-container en-forced" dir="ltr">
-              <div className="skills-sidebar">
-                {skillsData.map((cat, index) => (
-                  <button
-                    key={index}
-                    className={`tab-btn ${activeTab === index ? "active" : ""}`}
-                    onClick={() => setActiveTab(index)}
-                  >
-                    {cat.icon}
-                    <span>{cat.category}</span>
-                  </button>
-                ))}
-              </div>
-              <div className="skills-content">
-                <h3 className="content-title">
-                  {skillsData[activeTab].category}
-                </h3>
-                <div className="skill-tags-alt">
-                  {skillsData[activeTab].items.map((skill, i) => (
-                    <div className="tag-card" key={i}>
-                      <span className="dot"></span>
-                      {skill}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mobile-skills-wrapper">
-            <h2 className="section-title">{t.skillsSec.title}</h2>
-            <div className="skills-matrix en-forced" dir="ltr">
-              {skillsData.map((category, index) => (
-                <div className="skill-category-card" key={index}>
-                  <div className="category-header">
-                    <div className="icon-wrapper">{category.icon}</div>
-                    <h3>{category.category}</h3>
-                  </div>
-                  <div className="skill-tags">
-                    {category.items.map((skill, i) => (
-                      <span className="tag" key={i}>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+          <div className="rx-actions">
+            <div className="rx-lang" role="group" aria-label="Language">
+              {["en", "ku", "ar"].map((l) => (
+                <button
+                  key={l}
+                  className={lang === l ? "active" : ""}
+                  onClick={() => setLang(l)}
+                >
+                  {l.toUpperCase()}
+                </button>
               ))}
             </div>
+            <button
+              className="rx-icon-btn"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <a href="#contact" className="rx-btn rx-btn-gold rx-desktop-only">
+              {t.nav.getInTouch}
+            </a>
+            <button
+              className="rx-icon-btn rx-burger"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Menu"
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE MENU */}
+      <div className={`rx-drawer ${isMenuOpen ? "open" : ""}`}>
+        {navItems.map(([id, label], i) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            onClick={() => setIsMenuOpen(false)}
+            style={{ transitionDelay: `${80 + i * 60}ms` }}
+          >
+            <span>0{i + 1}</span>
+            {label}
+          </a>
+        ))}
+        <a
+          href="#contact"
+          className="rx-btn rx-btn-gold"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          {t.nav.getInTouch}
+        </a>
+      </div>
+
+      <main className="rx-main">
+        {/* HERO */}
+        <section className="rx-hero" id="about">
+          <div className="rx-hero-inner">
+            <Reveal className="rx-eyebrow">
+              <span className="rx-pulse" />
+              {x.avail}
+            </Reveal>
+
+            <Reveal as="h1" className="rx-hero-title" delay={80}>
+              {t.hero.intro && <span className="rx-dim">{t.hero.intro} </span>}
+              <span className="rx-gold-text">{t.hero.name}</span>
+              <span className="rx-dim">{t.hero.title}</span>
+            </Reveal>
+
+            <Reveal as="p" className="rx-hero-bio" delay={160}>
+              {t.hero.bio}
+            </Reveal>
+
+            <Reveal className="rx-cta" delay={240}>
+              <a href="#projects" className="rx-btn rx-btn-gold">
+                {x.cta1}
+                <ArrowUpRight size={18} className="rx-flip" />
+              </a>
+              <a href="#contact" className="rx-btn rx-btn-ghost">
+                {t.nav.getInTouch}
+              </a>
+            </Reveal>
+
+            <Reveal className="rx-metrics" delay={320}>
+              <div className="rx-metric">
+                <Globe size={20} />
+                <strong>15+</strong>
+                <span>{t.hero.liveProjects}</span>
+              </div>
+              <div className="rx-metric">
+                <Code size={20} />
+                <strong>5+</strong>
+                <span>{t.hero.yearsExp}</span>
+              </div>
+              <div className="rx-metric">
+                <Users size={20} />
+                <strong dir="ltr">10,000+</strong>
+                <span>{t.hero.activeUsers}</span>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="rx-scroll-cue" aria-hidden="true">
+            <span>{x.scroll}</span>
+            <i />
           </div>
         </section>
 
-        {/* CONTACT SECTION */}
-        <section className="contact-section" id="contact">
-          <h2 className="section-title">{t.contactSec.title}</h2>
-          <div className="contact-grid">
-            <div className="contact-form-panel">
+        {/* PROJECTS */}
+        <section className="rx-section" id="projects">
+          <Reveal className="rx-head">
+            <span className="rx-index">01</span>
+            <h2>{t.projectsSec.title}</h2>
+            <p>{t.projectsSec.subtitle}</p>
+          </Reveal>
+
+          <div className="rx-grid">
+            {projects.map((project, index) => (
+              <TiltCard
+                key={project.title + index}
+                project={project}
+                visitLabel={t.projectsSec.visitSite}
+                delay={(index % 3) * 90}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* SKILLS */}
+        <section className="rx-section" id="skills">
+          <Reveal className="rx-head">
+            <span className="rx-index">02</span>
+            <h2>{t.skillsSec.title}</h2>
+          </Reveal>
+
+          <div className="rx-skills" dir="ltr">
+            {skillsData.map((cat, index) => (
+              <Reveal
+                key={cat.category}
+                className="rx-skill"
+                delay={(index % 3) * 90}
+              >
+                <div className="rx-skill-head">
+                  <span className="rx-skill-icon">{cat.icon}</span>
+                  <h3>{cat.category}</h3>
+                </div>
+                <div className="rx-tags">
+                  {cat.items.map((skill) => (
+                    <span className="rx-tag" key={skill}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section className="rx-section" id="contact">
+          <Reveal className="rx-head">
+            <span className="rx-index">03</span>
+            <h2>{t.contactSec.title}</h2>
+          </Reveal>
+
+          <div className="rx-contact">
+            <Reveal className="rx-panel">
               <h3>{t.contactSec.formTitle}</h3>
-              <form>
-                <input type="text" placeholder={t.contactSec.name} />
-                <input type="email" placeholder={t.contactSec.email} />
+              <form onSubmit={handleSubmit}>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder={t.contactSec.name}
+                  required
+                />
+                <input
+                  name="email"
+                  type="email"
+                  placeholder={t.contactSec.email}
+                  required
+                />
                 <textarea
+                  name="message"
                   placeholder={t.contactSec.message}
                   rows="5"
-                ></textarea>
-                <button type="submit" className="btn-submit">
+                  required
+                />
+                <button type="submit" className="rx-btn rx-btn-gold">
                   {t.contactSec.submit}
+                  <ArrowUpRight size={18} className="rx-flip" />
                 </button>
               </form>
-            </div>
+            </Reveal>
 
-            <div className="social-channels-panel">
+            <Reveal className="rx-panel" delay={120}>
               <h3>{t.contactSec.socialTitle}</h3>
-              <ul className="channels-list">
+              <ul className="rx-channels">
                 <li>
-                  <div className="icon-wrapper">
+                  <span className="rx-chan-icon">
                     <BsFacebook size={18} />
-                  </div>
-                  <div className="channel-info">
-                    <a
-                      href="https://www.facebook.com/rawandrebwar121/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <strong>{t.contactSec.fbPage}</strong>
-                    </a>
-                  </div>
+                  </span>
+                  <a
+                    href="https://www.facebook.com/rawandrebwar121/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t.contactSec.fbPage}
+                  </a>
                 </li>
                 <li>
-                  <div className="icon-wrapper">
+                  <span className="rx-chan-icon">
                     <BsLinkedin size={18} />
-                  </div>
-                  <div className="channel-info">
-                    <a
-                      href="https://www.linkedin.com/in/rawandrebwar"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <strong>{t.contactSec.linkedin}</strong>
-                    </a>
-                  </div>
+                  </span>
+                  <a
+                    href="https://www.linkedin.com/in/rawandrebwar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t.contactSec.linkedin}
+                  </a>
                 </li>
                 <li>
-                  <div className="icon-wrapper">
+                  <span className="rx-chan-icon">
                     <BsYoutube size={18} />
-                  </div>
-                  <div className="channel-info">
-                    <a
-                      href="https://www.youtube.com/@CodeLand"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <strong>{t.contactSec.youtube}</strong>
-                    </a>
-                  </div>
+                  </span>
+                  <a
+                    href="https://www.youtube.com/@CodeLand"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t.contactSec.youtube}
+                  </a>
                 </li>
                 <li>
-                  <div className="icon-wrapper">
+                  <span className="rx-chan-icon">
                     <Mail size={18} />
-                  </div>
-                  <div className="channel-info">
-                    <strong>{t.contactSec.email}:</strong>
-                    <a
-                      href="mailto:contact@rawandrebwar.dev"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="en-forced">
-                        contact@rawandrebwar.dev
-                      </span>
-                    </a>
-                  </div>
+                  </span>
+                  <a href="mailto:contact@rawandrebwar.dev" dir="ltr">
+                    contact@rawandrebwar.dev
+                  </a>
                 </li>
                 <li>
-                  <div className="icon-wrapper">
+                  <span className="rx-chan-icon">
                     <Phone size={18} />
-                  </div>
-                  <div className="channel-info">
-                    <a
-                      href="tel:+9647725194590"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <strong>{t.contactSec.phone}</strong>
-                      <br />
-                      <span className="en-forced" dir="ltr">
-                        +964 772 519 4590
-                      </span>
-                    </a>
-                  </div>
+                  </span>
+                  <a href="tel:+9647725194590" dir="ltr">
+                    +964 772 519 4590
+                  </a>
                 </li>
               </ul>
-            </div>
+            </Reveal>
           </div>
         </section>
+      </main>
 
-        {/* FOOTER */}
-        <footer className="footer">
-          <img src="/logo21.png" alt="Logo" className="footer-logo" />
-          <p className="copyright">
-            © {new Date().getFullYear()} Rawand Rebwar. {t.footer.rights}
-          </p>
-        </footer>
-      </div>
+      <footer className="rx-foot">
+        <img src="/logo21.png" alt="Logo" />
+        <p>
+          © {new Date().getFullYear()} Rawand Rebwar. {t.footer.rights}
+        </p>
+      </footer>
     </div>
   );
 };

@@ -93,17 +93,17 @@
         }
       },
       {
-        "thumbUrl": "/images/cdo.png",
-        "title": "CDO Website",
-        "subTitle": "Backend Frontend, Dashboard, App Design",
+        "thumbUrl": "/images/morinaapp.png",
+        "title": "Morina App",
+        "subTitle": "Backend, Frontend, App Design",
         "details": {
-          "title": "Developed a website for CDO",
-          "description": "I developed a website for CDO, an NGO that provides free education to children in Iraq. The website is built with React js and Tailwind css, and it is hosted on Vercel.",
-          "type": "Website",
-          "langages": "Node Js, Express, MongoDB, Next js, Tailwind css",
-          "platform": "CDO",
+          "title": "Event Ticketing & Management Platform for Morina",
+          "description": "I developed the Morina App platform, a modern ticketing and event management web application for Morina Agency. The platform allows users to explore events, concerts, exhibitions, and bazaars, and purchase tickets online in real-time.",
+          "type": "Web App",
+          "langages": "React js, Node js, Express, Tailwind css, MySQL",
+          "platform": "Morina",
           "country": "IRQ",
-          "url": "www.cdo-iraq.org"
+          "url": "morina.app"
         }
       },
       {

@@ -3,6 +3,14 @@
 [dir="rtl"] {
   direction: rtl;
   text-align: right;
+  font-family: "Noto Kufi Arabic", "NotoKufiArabic", sans-serif !important;
+
+  *,
+  h1, h2, h3, h4, h5, h6,
+  p, span, div, a, li, ul, ol,
+  input, textarea, button, select, label, small, b, strong, em {
+    font-family: "Noto Kufi Arabic", "NotoKufiArabic", sans-serif !important;
+  }
 
   // ============================================
   // Bootstrap Utility Classes - Margin & Padding

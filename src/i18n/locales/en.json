@@ -43,6 +43,13 @@
         "detailsDescription": "I designed and developed a robust backend system for a digital menu platform, Morina Menu. This system handles user authentication, menu management, and order processing, ensuring a seamless and efficient user experience. The backend is built with Node js and MySQL, providing a secure and scalable foundation for the application.",
         "type": "Digital Menu"
       },
+      "morinaApp": {
+        "title": "Morina App",
+        "subTitle": "Backend, Frontend, App Design",
+        "detailsTitle": "Event Ticketing & Management Platform for Morina",
+        "detailsDescription": "I developed the Morina App platform, a modern ticketing and event management web application for Morina Agency. The platform allows users to explore events, concerts, exhibitions, and bazaars, and purchase tickets online in real-time.",
+        "type": "Web App"
+      },
       "cdoWebsite": {
         "title": "CDO Website",
         "subTitle": "Backend Frontend, Dashboard, App Design",
