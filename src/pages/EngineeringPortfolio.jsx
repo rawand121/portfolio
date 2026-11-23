@@ -4,22 +4,21 @@ import {
   Globe,
   Code,
   Users,
-  Mail,
   Phone,
   Terminal,
   Database,
   Server,
   Cloud,
   Activity,
-  Menu,
-  X,
   Sun,
   Moon,
   ArrowUpRight,
 } from "lucide-react";
 import { BsFacebook, BsLinkedin, BsYoutube } from "react-icons/bs";
 
-const ScrollScene = lazy(() => import("../components/ScrollScene"));
+const ScrollRibbon = lazy(() =>
+  import("../components/LuxuryThree").then((m) => ({ default: m.ScrollRibbon })),
+);
 
 // --- FULL SITE TRANSLATIONS ---
 const translations = {
@@ -48,7 +47,7 @@ const translations = {
       techStack: "Tech Stack",
       visitSite: "Visit Site",
     },
-    skillsSec: { title: "ENGINEERING CAPABILITIES" },
+    skillsSec: { title: "TECHNOLOGIES" },
     contactSec: {
       title: "CONTACT & SOCIAL HUB",
       formTitle: "SEND ME A MESSAGE",
@@ -89,7 +88,7 @@ const translations = {
       techStack: "تەکنەلۆژیاکان",
       visitSite: "سەردانی ماڵپەڕ",
     },
-    skillsSec: { title: "توانا ئەندازیارییەکان" },
+    skillsSec: { title: "تەکنەلۆژیاکان" },
     contactSec: {
       title: "پەیوەندی و تۆڕە کۆمەڵایەتییەکان",
       formTitle: "نامەیەکم بۆ بنێرە",
@@ -131,7 +130,7 @@ const translations = {
       techStack: "التقنيات المستخدمة",
       visitSite: "زيارة الموقع",
     },
-    skillsSec: { title: "القدرات الهندسية" },
+    skillsSec: { title: "التقنيات" },
     contactSec: {
       title: "التواصل والشبكات الاجتماعية",
       formTitle: "أرسل لي رسالة",
@@ -350,19 +349,16 @@ const skillsData = [
 
 const extra = {
   en: {
-    avail: "Available for freelance projects",
     cta1: "View projects",
     scroll: "Scroll",
     home: "Home",
   },
   ku: {
-    avail: "ئامادەم بۆ پڕۆژەی فریلانس",
     cta1: "پڕۆژەکان ببینە",
     scroll: "سکرۆڵ بکە",
     home: "سەرەکی",
   },
   ar: {
-    avail: "متاح للمشاريع المستقلة",
     cta1: "عرض المشاريع",
     scroll: "مرر للأسفل",
     home: "الرئيسية",
@@ -478,8 +474,77 @@ const TiltCard = ({ project, visitLabel, delay }) => {
   );
 };
 
+/* Animated number that counts up when scrolled into view */
+const Count = ({ to, suffix = "" }) => {
+  const ref = useRef(null);
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    let raf = 0;
+    const run = () => {
+      const start = performance.now();
+      const dur = 1800;
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / dur);
+        setVal(Math.round(to * (1 - Math.pow(1 - p, 4))));
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    };
+    if (!("IntersectionObserver" in window)) {
+      setVal(to);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          run();
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [to]);
+  return (
+    <span ref={ref} dir="ltr">
+      {val.toLocaleString("en")}
+      {suffix}
+    </span>
+  );
+};
+
+const LangSwitch = ({ lang, setLang }) => (
+  <div className="rx-lang" role="group" aria-label="Language">
+    {["en", "ku", "ar"].map((l) => (
+      <button
+        key={l}
+        className={lang === l ? "active" : ""}
+        onClick={() => setLang(l)}
+      >
+        {l.toUpperCase()}
+      </button>
+    ))}
+  </div>
+);
+
 const App = () => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = localStorage.getItem("rx-theme");
+      if (saved) return saved;
+      return window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark";
+    } catch (e) {
+      return "dark";
+    }
+  });
   const [lang, setLang] = useState("ku");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -493,11 +558,28 @@ const App = () => {
 
   /* Page background follows theme */
   useEffect(() => {
-    document.body.style.background = theme === "dark" ? "#07080c" : "#f6f2ea";
+    document.body.style.background = theme === "dark" ? "#2B2D31" : "#D9DADC";
     document.body.style.margin = "0";
     document.documentElement.style.background =
-      theme === "dark" ? "#07080c" : "#f6f2ea";
+      theme === "dark" ? "#2B2D31" : "#D9DADC";
+    try {
+      localStorage.setItem("rx-theme", theme);
+    } catch (e) {
+      /* ignore */
+    }
   }, [theme]);
+
+  /* Close mobile menu with Escape / when resized to desktop */
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && setIsMenuOpen(false);
+    const onResize = () => window.innerWidth > 900 && setIsMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
 
   /* Lock page scroll while mobile menu is open */
   useEffect(() => {
@@ -545,12 +627,17 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const subject = encodeURIComponent(`Portfolio message from ${f.get("name")}`);
-    const body = encodeURIComponent(
-      `${f.get("message")}\n\n— ${f.get("name")} (${f.get("email")})`,
+    const text = encodeURIComponent(
+      `${f.get("name")} (${f.get("email")})\n\n${f.get("message")}`,
     );
-    window.location.href = `mailto:contact@rawandrebwar.dev?subject=${subject}&body=${body}`;
+    window.open(`https://wa.me/9647725194590?text=${text}`, "_blank", "noopener,noreferrer");
   };
+
+  const projectNames = [
+    ...projects.map((p) => p.title.trim()),
+    "Market Management System",
+    "Shop Management System",
+  ];
 
   return (
     <div
@@ -560,10 +647,6 @@ const App = () => {
       dir={isRTL ? "rtl" : "ltr"}
       ref={rootRef}
     >
-      <Suspense fallback={null}>
-        <ScrollScene theme={theme} rtl={isRTL} />
-      </Suspense>
-
       <div className="rx-progress">
         <span ref={barRef} />
       </div>
@@ -584,17 +667,7 @@ const App = () => {
           </nav>
 
           <div className="rx-actions">
-            <div className="rx-lang" role="group" aria-label="Language">
-              {["en", "ku", "ar"].map((l) => (
-                <button
-                  key={l}
-                  className={lang === l ? "active" : ""}
-                  onClick={() => setLang(l)}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
+            <LangSwitch lang={lang} setLang={setLang} />
             <button
               className="rx-icon-btn"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -606,12 +679,15 @@ const App = () => {
               {t.nav.getInTouch}
             </a>
             <button
-              className="rx-icon-btn rx-burger"
+              className={`rx-icon-btn rx-burger ${isMenuOpen ? "is-open" : ""}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Menu"
               aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              <span className="rx-burger-lines">
+                <i />
+                <i />
+              </span>
             </button>
           </div>
         </div>
@@ -637,52 +713,91 @@ const App = () => {
         >
           {t.nav.getInTouch}
         </a>
+        <div className="rx-drawer-foot">
+          <LangSwitch lang={lang} setLang={setLang} />
+          <span>© {new Date().getFullYear()} Rawand Rebwar</span>
+        </div>
       </div>
 
       <main className="rx-main">
         {/* HERO */}
         <section className="rx-hero" id="about">
-          <div className="rx-hero-inner">
-            <Reveal className="rx-eyebrow">
-              <span className="rx-pulse" />
-              {x.avail}
-            </Reveal>
+          <div className="rx-hero-grid">
+            <div className="rx-hero-copy">
+              <Reveal className="rx-accent-line" />
 
-            <Reveal as="h1" className="rx-hero-title" delay={80}>
-              {t.hero.intro && <span className="rx-dim">{t.hero.intro} </span>}
-              <span className="rx-gold-text">{t.hero.name}</span>
-              <span className="rx-dim">{t.hero.title}</span>
-            </Reveal>
+              <Reveal as="h1" className="rx-hero-title" delay={80}>
+                {t.hero.intro && <span className="rx-dim">{t.hero.intro} </span>}
+                <span className="rx-gold-text">{t.hero.name}</span>
+                <span className="rx-dim">{t.hero.title}</span>
+              </Reveal>
 
-            <Reveal as="p" className="rx-hero-bio" delay={160}>
-              {t.hero.bio}
-            </Reveal>
+              <Reveal as="p" className="rx-hero-bio" delay={160}>
+                {t.hero.bio}
+              </Reveal>
 
-            <Reveal className="rx-cta" delay={240}>
-              <a href="#projects" className="rx-btn rx-btn-gold">
-                {x.cta1}
-                <ArrowUpRight size={18} className="rx-flip" />
-              </a>
-              <a href="#contact" className="rx-btn rx-btn-ghost">
-                {t.nav.getInTouch}
-              </a>
-            </Reveal>
+              <Reveal className="rx-cta" delay={240}>
+                <a href="#projects" className="rx-btn rx-btn-gold">
+                  {x.cta1}
+                  <ArrowUpRight size={18} className="rx-flip" />
+                </a>
+                <a href="#contact" className="rx-btn rx-btn-ghost">
+                  {t.nav.getInTouch}
+                </a>
+              </Reveal>
 
-            <Reveal className="rx-metrics" delay={320}>
-              <div className="rx-metric">
-                <Globe size={20} />
-                <strong>15+</strong>
-                <span>{t.hero.liveProjects}</span>
-              </div>
-              <div className="rx-metric">
-                <Code size={20} />
-                <strong>5+</strong>
-                <span>{t.hero.yearsExp}</span>
-              </div>
-              <div className="rx-metric">
-                <Users size={20} />
-                <strong dir="ltr">10,000+</strong>
-                <span>{t.hero.activeUsers}</span>
+              <Reveal className="rx-metrics" delay={320}>
+                <div className="rx-metric">
+                  <Globe size={20} />
+                  <strong>
+                    <Count to={15} suffix="+" />
+                  </strong>
+                  <span>{t.hero.liveProjects}</span>
+                </div>
+                <div className="rx-metric">
+                  <Code size={20} />
+                  <strong>
+                    <Count to={5} suffix="+" />
+                  </strong>
+                  <span>{t.hero.yearsExp}</span>
+                </div>
+                <div className="rx-metric">
+                  <Users size={20} />
+                  <strong>
+                    <Count to={10000} suffix="+" />
+                  </strong>
+                  <span>{t.hero.activeUsers}</span>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal className="rx-portrait-col" delay={140}>
+              <div className="rx-portrait-clean">
+                <span className="rx-corner rx-corner-tl" aria-hidden="true" />
+                <span className="rx-corner rx-corner-br" aria-hidden="true" />
+                <div className="rx-portrait-dots" aria-hidden="true" />
+
+                <img
+                  src="/me/img1-removebg-preview.png"
+                  alt="Rawand Rebwar"
+                  className="rx-portrait-img"
+                  decoding="async"
+                />
+
+                <div className="rx-portrait-baseline" aria-hidden="true" />
+
+                <div className="rx-float-chip rx-chip-top" dir="ltr">
+                  <span className="rx-chip-dot" />
+                  Software Engineer
+                </div>
+                <div className="rx-float-chip rx-chip-bottom" dir="ltr">
+                  <Code size={14} />
+                  Backend · Web · Cloud
+                </div>
+                <div className="rx-float-chip rx-chip-side" dir="ltr">
+                  <Server size={14} />
+                  Scalable Systems
+                </div>
               </div>
             </Reveal>
           </div>
@@ -692,6 +807,23 @@ const App = () => {
             <i />
           </div>
         </section>
+
+        {/* PROJECTS MARQUEE + THREE.JS SCROLL RIBBON */}
+        <div className="rx-band">
+          <Suspense fallback={null}>
+            <ScrollRibbon theme={theme} />
+          </Suspense>
+          <div className="rx-marquee" dir="ltr" aria-label="Projects showcase">
+            <div className="rx-marquee-track">
+              {[...projectNames, ...projectNames].map((name, i) => (
+                <a href="#projects" key={i} className="rx-marquee-item">
+                  {name}
+                  <i />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* PROJECTS */}
         <section className="rx-section" id="projects">
@@ -793,6 +925,7 @@ const App = () => {
                   >
                     {t.contactSec.fbPage}
                   </a>
+                  <ArrowUpRight size={16} className="rx-chan-arrow rx-flip" />
                 </li>
                 <li>
                   <span className="rx-chan-icon">
@@ -805,6 +938,7 @@ const App = () => {
                   >
                     {t.contactSec.linkedin}
                   </a>
+                  <ArrowUpRight size={16} className="rx-chan-arrow rx-flip" />
                 </li>
                 <li>
                   <span className="rx-chan-icon">
@@ -817,14 +951,7 @@ const App = () => {
                   >
                     {t.contactSec.youtube}
                   </a>
-                </li>
-                <li>
-                  <span className="rx-chan-icon">
-                    <Mail size={18} />
-                  </span>
-                  <a href="mailto:contact@rawandrebwar.dev" dir="ltr">
-                    contact@rawandrebwar.dev
-                  </a>
+                  <ArrowUpRight size={16} className="rx-chan-arrow rx-flip" />
                 </li>
                 <li>
                   <span className="rx-chan-icon">
@@ -833,6 +960,7 @@ const App = () => {
                   <a href="tel:+9647725194590" dir="ltr">
                     +964 772 519 4590
                   </a>
+                  <ArrowUpRight size={16} className="rx-chan-arrow rx-flip" />
                 </li>
               </ul>
             </Reveal>
